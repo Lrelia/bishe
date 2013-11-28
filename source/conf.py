@@ -124,10 +124,10 @@ html_theme_options = {
     #    (name, "http://example.com", True) # arbitrary absolute url
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
-    'navbar_links': [
-        ("Examples", "examples"),
-        ("Link", "http://example.com", True),
-    ],
+    #'navbar_links': [
+    #    ("Examples", "examples"),
+    #    ("Link", "http://example.com", True),
+    #],
 
     # Render the next and previous page links in navbar. (Default: true)
     'navbar_sidebarrel': True,
@@ -209,7 +209,7 @@ html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-#html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = '%Y-%m-%d'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -235,7 +235,7 @@ html_static_path = ['_static']
 html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #html_show_copyright = True
