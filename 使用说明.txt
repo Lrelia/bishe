@@ -1,0 +1,32 @@
+
+1.使用环境
+windows + python +sphinx 
+
+按顺序安装以下工具：
+
+1)安装python
+下载地址： 
+32位windows : http://www.python.org/ftp/python/2.7.6/python-2.7.6.msi
+64位windows : http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
+
+2)设置环境变量:
+添加以下环境变量：
+C:\Python27;C:\Python27\Scripts
+
+3)在setups目录下双击install.bat
+
+
+2.使用步骤
+1) 在source目录下编写rst文件
+2) 双击build.bat
+3) 在build目录查看生成结果，建议先用chrome查看效果，后续有专人优化样式模板。
+
+3.如何写文档?
+在source里面，注意conf.py和logo.png不能改，其他的都可以改。
+rst即restructuredtext，类似于markdown，文档编写利器。需要大概学一下它的语法。
+
+4.截图放哪?
+source/_static目录下，可在里面建立子目录。
+
+5.如何生成html文档?
+双击build.bat即可。
