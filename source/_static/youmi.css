@@ -1,0 +1,131 @@
+/*=configCSS, 配置自定义的CSS*/
+body {
+    color: #2B2625; 
+}
+
+footer {
+    text-align: center;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+    margin-left: 4em;
+    margin-bottom: 2em;
+}
+
+form {
+    display: none;
+}
+
+p {
+    margin-left: 4em;
+}
+
+pre {
+    background: rgb(250,250,250);
+    margin-left: 4em;
+    color: rgb(20,125,196);
+    margin-bottom: 1em;
+}
+
+/*=header,标题*/
+h1 {
+    display:none;
+}
+
+h2 {
+    color: #F79417;
+    margin-top: 2em;
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+h3 {
+    color: #F79417;
+    margin-top:1em;
+}
+
+h4 {
+    color: rgb(42,42,36);
+    margin-top: 1em;
+    margin-left: 2em;
+    font-weight: bold;
+}
+
+
+
+/*=resetCSS*/
+.navbar {
+    background: #F79417;
+    border-bottom: 1px solid rgb(240,240,152);
+}
+
+.container {
+    max-width: 900px;
+}
+
+a.navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-text {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    text-shadow: 0 0 0 0 #fff;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: #D37227;
+}
+
+#sourcelink {
+    display: none;
+}
+
+.row {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+
+/*=liElements*/
+li p {
+    margin-left: 0;
+}
+
+ol li {
+    margin-left: 4em;
+}
+
+ul li {
+    margin-left: 1em;
+}
+
+ul li pre {
+    margin-left: 0;
+}
+
+ul li img {
+    margin-left: 0;
+}
+
+ol li img {
+    margin-left: 0;
+}
+
+ol li pre {
+    margin-left: 0;
+}
+
