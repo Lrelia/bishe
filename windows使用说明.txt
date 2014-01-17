@@ -13,7 +13,7 @@ windows + python +sphinx
 添加以下环境变量：
 C:\Python27;C:\Python27\Scripts
 
-3)在setups目录下双击install.bat
+3)在windows\setups目录下双击install.bat
 
 
 2.使用步骤
