@@ -103,15 +103,23 @@ Ym_Class_AppSummaryObject中集成了一条广告的摘要信息，通过使用Y
 
 1、因为某些字段的数据还在录入中，所以可能暂时无法获取到数据，暂受影响的数据有：app的大小、任务提示语、任务步骤流程（当没有获取到数据的时候返回""）。
 
-2、app的安装状态有2种，分别为ym_param_ALREADY_DONE--<已完成>、ym_param_NOT_INSTALL--<未安装>。
+2、app的状态有4种，对应的值分别为：
 
-每个状态下对应的积分也有所不同：
+	<已完成>：ym_param_ALREADY_DONE；
+	
+	<未安装>：ym_param_NOT_INSTALL；
+	
+	<正在下载>：ym_param_DOWNLOADING；
+	
+	<已经下载>：ym_param_ALERADY_DOWNLOAN。
 
-	<已完成>状态下获取到的积分为0；
+其中：<已完成>、<未安装>状态下对应的积分关系如下：
+
+	<已完成>状态下获取到的积分为0。
 	
 	<未安装>状态下获取到的积分为该应用所提供的积分。
 	
-app的安装状态定义于net.youmi.android.offers.diyoffer.Ym_Class_AppStatus类中：::
+app的状态定义于net.youmi.android.offers.diyoffer.Ym_Class_AppStatus类中：::
 
     public class Ym_Class_AppStatus{
 
@@ -255,7 +263,7 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 
 1、因为某些字段的数据还在录入中，所以可能暂时无法获取到数据，暂受影响的数据有：任务提示语、任务步骤流程（当没有获取到数据的时候返回""）。  
 
-2、安装状态和积分的关系请参考上述第三点：获取广告列表
+2、应用状态和积分的关系请参考上述第三点：获取广告列表
 
 
 4.2 获取方式
@@ -321,9 +329,6 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 --------------
 通过调用下面方法即可下载app，如果app的安装状态为<未安装>，则可获取积分结算::
 
-	import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-	import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
-	...
 	// 传入Ym_Class_AppDetailObject对象即可
 	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_downloadApp(appDetailObject);
 
