@@ -183,7 +183,7 @@ app的状态定义于net.youmi.android.offers.diyoffer.Ym_Class_AppStatus类中�
 
 	/**
 	 * 异步加载积分墙数据列表
-	 * @param pageIndex		请求页码(正整数，从1开始)
+	 * @param pageIndex	请求页码(正整数，从1开始)
 	 * @param adNumPerPage	每页的广告数量（正整数，从1开始）
 	 * @param requestType	请求类型
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL: 所有（默认值）
@@ -336,7 +336,7 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 --------------
 app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。
 
-通过实现``net.youmi.android.offers.diyoffer.DiyAppNotify``这个接口，并且在界面初始化后向``net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager``的``registerListener``方法注册监听即可让界面随时获得app的下载安装状态，在界面销毁时，请务必调用``removeListener``方法注销监听。
+通过实现net.youmi.android.offers.diyoffer.DiyAppNotify这个接口，并且在界面初始化后向net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager的``registerListener方法注册监听即可让界面随时获得app的下载安装状态，在界面销毁时，请务必调用removeListener方法注销监听。
 
 DiyAppNotify的定义::
 
