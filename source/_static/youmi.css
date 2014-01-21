@@ -19,31 +19,38 @@ form {
 }
 
 p {
-    margin-left: 4em;
+    margin-left: 2.6em;
+
 }
 
 pre {
     background: rgb(250,250,250);
-    margin-left: 4em;
+    margin-left: 2.8em;
     color: rgb(20,125,196);
     margin-bottom: 1em;
 }
 
 /*=header,标题*/
 h1 {
-    display:none;
+    color: #F79417;
+    font-weight: bolder;
+    font-size: 2.2em;
 }
 
 h2 {
     color: #F79417;
-    margin-top: 2em;
-    font-weight: bolder;
+    margin-top: 1em;
+    font-weight: bold;
     letter-spacing: 3px;
+    font-size: 1.6em;
 }
 
 h3 {
-    color: #F79417;
+    /*color: #F79417;*/
     margin-top:1em;
+    margin-left: .5em;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 h4 {
