@@ -1,5 +1,5 @@
 
-# 环境配置
+# 一、环境配置
 
 ## linux
 * 1. python 2.7  安装命令是 sudo apt-get install python 
@@ -30,41 +30,63 @@
 1.当前目录下有个windows目录，打开它，里面有个setups目录，在里面找到install.bat
 2.双击install.bat 即可安装其余插件.
 
-# 认识文档工具
+# 二、认识文档工具
 
 ## 目录说明
 
+1.source目录
 
-# 使用步骤
+该目录用于存放文档的rst文件，一个产品所需要的rst文件可能是多个，在创建你的rst文件(支持中文命名)，最终将会生成.html文件，该目录同时存放多个产品的文档，请勿改动其他项目的rst文件。
 
+2.configs目录
+
+该目录用于存放产品文档的配置文件,产品文档配置文件主要说明产品名称、版本号以及最终生成的html文件需要存放到的目标路径。
+
+配置用的json文件定义:
+
+```
+    {
+    "title":"这里写产品标题",
+    "ver":"这里写产品文档版本号",
+    "from":[
+            "build/html/有米Android积分墙开发者文档.html", //比如这个
+            "build/html/_static" //这个是必须的
+        ],
+    "into":"out/android/您的产品的英文名目录" //参考其他配置
+    }
+
+```
+
+
+
+# 三、使用步骤
+
+编写rst文档->在configs下面新建产品文档配置->运行html.sh或html.bat
 
 
 ## 编写rst文档
 
-### rst教程 
+rst教程详见: https://github.com/buke/openerp-doc/wiki/reStructuredText%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B
 
-详见: 
-
-### rst文件存留位置
-
-source目录
+或搜索 "reStructuredText教程"
 
 *注意:source目录是多项目sdk文档共享目录，请不要改动他人的文档，创建或修改自己的文档,注意命名规范，支持中文命名。*
+**注意，支持中文命名哦，自己规范命名，另外千万不要覆盖已有的文档！**
 
-### source目录规
+## 建立configs配置文件
 
-## 编写
+这是一次性工作，比如安卓插播广告的sdk文档的配置文件，可以在configs目录下建立一个spot.json，参考目录里面已有的配置文件。注意最后要写入的into目录需要明确指定保存的路径，比如安卓插播广告的是out/android/spot，而ios的是out/ios/spot。
 
-1) 在source目录下编写rst文件
-2) 双击build.bat
-3) 在build目录查看生成结果，建议先用chrome查看效果，后续有专人优化样式模板。
+## 生成html文档
 
-3.如何写文档?
-在source里面，注意conf.py和logo.png不能改，其他的都可以改。
-rst即restructuredtext，类似于markdown，文档编写利器。需要大概学一下它的语法。
+在命令行下运行以下命令:
+linux :
+```
+    sh html.sh
+```
+windows:
+```
+    html.bat
+```
 
-4.截图放哪?
-source/_static目录下，可在里面建立子目录。
-
-5.如何生成html文档?
-双击build.bat即可。
+然后选择操作编号，即可生成文档，最终产品的文档将保存到配置文件指定的into目录中，一般是out目录下。
