@@ -26,15 +26,18 @@
 
 ```
 
-###  一键安装其他插件:
-当前目录下有个windows目录，打开它，里面有个setups目录，在里面找到install.bat
+###  一键安装windows环境的其他插件:
+1.当前目录下有个windows目录，打开它，里面有个setups目录，在里面找到install.bat
+2.双击install.bat 即可安装其余插件.
 
-双击install.bat
+# 认识文档工具
 
-即可安装其余插件.
+## 目录说明
 
 
 # 使用步骤
+
+
 
 ## 编写rst文档
 
