@@ -1,0 +1,298 @@
+
+  
+  
+ 
+  
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>积分墙高级功能 &mdash; YoumiAndroidSdkDocumentation 4.06 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.06',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="YoumiAndroidSdkDocumentation 4.06 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">有米广告SDK文档</a>
+        <span class="navbar-text navbar-version pull-left"><b>v4.09</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ></ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">积分墙高级功能</a><ul>
+<li><a class="reference internal" href="#ui">1.刷新积分余额UI显示</a></li>
+<li><a class="reference internal" href="#sdk">2.通过SDK获取积分订单</a></li>
+<li><a class="reference internal" href="#id3">3.通过服务器获取积分订单</a></li>
+<li><a class="reference internal" href="#id4">4.验证积分墙配置是否正确</a></li>
+<li><a class="reference internal" href="#debug-log">5.关闭有米的 debug log</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="id1">
+<h1>积分墙高级功能<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="javascript:history.back();">返回上一层</a></p>
+<div class="section" id="ui">
+<h2>1.刷新积分余额UI显示<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h2>
+<p>如果您在UI上显示用户的积分账户余额，用户的积分余额可能会因为各种可能的原因导致余额变动(增减)，这时候您需要刷新UI上的显示值，可以通过以下方法实现积分余额在UI上的自动刷新。</p>
+<p>(1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。</p>
+<p>接口定义如下:</p>
+<div class="highlight-python"><pre>package net.youmi.android.offers;
+
+/**
+* 积分余额增减变动监听器
+* @author youmi
+*/
+public interface Ym_Class_PointsChangeNotify {
+
+/**
+ * 积分余额增减变动通知,该回调在UI线程中进行，可直接与UI进行交互
+ * @param pointsBalance 当前积分余额
+ */
+public void ym_method_onPointBalanceChange(int pointsBalance);
+
+}</pre>
+</div>
+<p>(2)在UI初始化后调用:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_registerNotify</span><span class="p">(</span><span class="n">notifyObject</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>(3)在UI销毁前调用以下代码释放Notify引用，以防止造成内存漏洞:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_unRegisterNotify</span><span class="p">(</span><span class="n">notifyObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sdk">
+<h2>2.通过SDK获取积分订单<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h2>
+<p>用户完成了一次积分任务并在有米服务器成功结算后，可以通过以下方法让SDK回调通知应用用户所完成的订单:</p>
+<p>第一步，您需要定义一个MyPointsReceiver类(名字可以随意)，它必须继承自net.youmi.android.offers.Ym_Class_PointsReceiver:</p>
+<p><em>示例代码</em>:</p>
+<div class="highlight-python"><pre>package com.test;
+import android.content.Context;
+import net.youmi.android.offers.Ym_Class_EarnPointsOrderList;
+import net.youmi.android.offers.Ym_Class_PointsReceiver;
+public class MyPointsReceiver extends Ym_Class_PointsReceiver{
+        @Override
+        protected void ym_method_onEarnPoints(Context context, Ym_Class_EarnPointsOrderList list) {
+                //当SDK获取到用户赚取积分的订单时，会第一时间调用该方法通知您。
+                //参数Ym_Class_EarnPointsOrderList是一个积分订单列表，您可以在这里处理积分详细订单。
+        }
+        @Override
+        protected void ym_method_onViewPoints(Context context) {
+                //这里是个有趣的小功能，当用户赚取积分之后，积分墙SDK会在通知栏上显示一条获取积分的提示，如果用户点击了这个通知，该函数会被调用。
+                //这时候您可以在这里实现一个跳转，让用户跳转到您设计好的一个积分账户余额页面(如"我的账户"之类的Activity)。
+                //该操作是可选的，如果需要关闭通知栏积分提示，请调用PointsManager.getInstance(context).setEnableEarnPointsNotification(false)
+        }
+}</pre>
+</div>
+<p>第二步，您需要在AndroidManifest.xml上配置刚刚定义的 MyPointsReceiver:</p>
+<p><em>示例代码</em>:</p>
+<div class="highlight-python"><pre>&lt;receiver
+        android:name="MyPointsReceiver"
+        android:exported="false" &gt;
+        &lt;intent-filter&gt;
+                &lt;action android:name="ep_请替换为您的AppID" /&gt;
+                &lt;action android:name="vp_请替换为您的AppID" /&gt;
+        &lt;/intent-filter&gt;
+&lt;/receiver&gt;</pre>
+</div>
+<p>注意:这里有一个很关键的细节，您必须为MyPointsReceiver配置两个Action，Action的名字分别是**以&#8221;ep_&#8221;和&#8221;vp_&#8221;开头**，以您的应用的AppID结尾的字符串。（AppID是从有米主站上申请的应用ID，16个字符，所以Action的总长度应该是19个字符）</p>
+<p>附录:积分订单类定义</p>
+<p>Ym_Class_EarnPointsOrderList:</p>
+<div class="highlight-python"><pre>package net.youmi.android.offers;
+...
+/**
+ * 积分订单列表
+ *
+ */
+public class Ym_Class_EarnPointsOrderList {
+        /**
+         * 获取服务器上设置积分单位名称
+         */
+        public String getCurrencyName();
+        /**
+         * 根据index获取订单详情(EarnPointsOrderInfo)
+         */
+        public Ym_Class_EarnPointsOrderInfo get(int index);
+        /**
+         * 判断列表是否为空
+         */
+        public boolean isEmpty();
+        /**
+         * 获取列表项数量
+         */
+        public int size();
+}</pre>
+</div>
+<p>Ym_Class_EarnPointsOrderInfo:</p>
+<div class="highlight-python"><pre>package net.youmi.android.offers;
+/**
+ * 赚取积分的订单
+ */
+public final class Ym_Class_EarnPointsOrderInfo {
+        /**
+         * 获取订单号(具有唯一性)
+         */
+        public String getOrderID();
+        /**
+         * 获取渠道号，这里指在AndroidManifest.xml上配置的有米渠道号，详见文档
+         */
+        public int getChannelId();
+        /**
+         * 获取开发者自定义用户唯一标识，该值通过OffersManager设置
+         */
+        public String getCustomUserID();
+        /**
+         * 获取积分订单的状态: 1.表示开发者获得了收入并且用户获得了积分。 2.表示开发者没有获得收入但用户获得了积分(未通过审核以及测试模式下结算无效等情况)。
+         */
+        public int getStatus()
+        /**
+         * 本次获取积分的描述语，如"成功安装《--》获取了100金币"
+         */
+        public String getMessage();
+        /**
+         * 本次获得的积分
+         */
+        public int getPoints();
+        /**
+         * 本次获得积分的结算时间
+         */
+        public long getSettlingTime();
+}</pre>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3.通过服务器获取积分订单<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>用户完成了一次积分任务并在有米服务器成功结算后，也可以通过服务器通讯的方式，由有米服务器向您的服务器回调用户完成的订单，详情请查看 <a class="reference external" href="http://wiki.youmi.net/Youmi_android_offers_order_callback_protocol">有米Android积分墙积分订单服务器回调协议</a> 。</p>
+<p><strong>注意:如果使用了服务器订单回调，则上文所述的&#8221;通过SDK获取积分订单&#8221;将不可用，即SDK将不会通知应用订单到账，同时SDK原有的积分管理功能也将被禁用，所有积分流程只能通过服务器实现，可以极大地提高积分安全性。</strong></p>
+</div>
+<div class="section" id="id4">
+<h2>4.验证积分墙配置是否正确<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>嵌入SDK时如果配置有误有可能会导致没有收入或者获取不到积分，在完成文档中的配置之后可以通过调用以下接口查看配置是否正确:</p>
+<div class="highlight-python"><pre>//积分墙配置检查(没有使用"通过SDK获取积分订单"功能):
+bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig();
+//积分墙配置检查(使用"通过SDK获取积分订单"功能):
+bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig(true);</pre>
+</div>
+<p><strong>注意,该接口调用的结果如果返回true，则说明配置正确，可以删掉该调用。如果返回false，则需要查看logcat的相关输出，里面有指出哪些相关的配置错误内容。</strong></p>
+</div>
+<div class="section" id="debug-log">
+<h2>5.关闭有米的 debug log<a class="headerlink" href="#debug-log" title="Permalink to this headline">¶</a></h2>
+<p>如果需要关闭有米广告SDK的 debug log，请调用以下代码来关闭sdk的log输出。</p>
+<p><em>代码示例:</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">Ym_Class_AdManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_setEnableDebugLog</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>注意:上传到有米主站进行审核时务必开启debug log,这样才能保证通过审核。</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, Youmi.<br/>
+      Last updated on 2014-02-15.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
