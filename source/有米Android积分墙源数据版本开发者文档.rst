@@ -89,18 +89,18 @@ Ym_Class_AppSummaryObject中集成了一条广告的摘要信息，通过使用Y
 
 	Ym_Class_AppSummaryObject appSummaryObject;
 	int id=appSummaryObject.ym_method_getAdId();		// 获取广告id
-	String adName = appSummaryObject.ym_method_getAppName();		// 获取app的名称
-	String pn = appSummaryObject.ym_method_getPackageName();		// 获取app的包名
-	int versionCode =appSummaryObject.ym_method_getVersionCode();		// 获取app的版本号
-	String adIconUrl = appSummaryObject.ym_method_getIconUrl();		// 获取app的图标地址
-	String adSize = appSummaryObject.ym_method_getAppSize();		// 获取app的大小
-	int adStatus = appSummaryObject.ym_method_getAdTaskStatus();		// 获取广告的完成状态
-	int dlStatus = appSummaryObject.ym_method_getAdDownloadStatus();		// 获取广告的下载状态
-	int points = appSummaryObject.ym_method_getPoints();		// 获取app的积分（已完成状态下的广告积分返回值为0）	
-	String pointsUnit =appSummaryObject.ym_method_getPointsUnit();		// 获取广告的积分单位
-	String adtext = appSummaryObject.ym_method_getAdSlogan();		// 获取广告标语
-	int actionType=appSummaryObject.getActionType();		// 获取广告的类型
-	String steps =appSummaryObject.ym_method_getTaskSteps();		// 任务步骤流程指
+	String adName = appSummaryObject.ym_method_getAppName();	// 获取app的名称
+	String pn = appSummaryObject.ym_method_getPackageName();	// 获取app的包名
+	int versionCode =appSummaryObject.ym_method_getVersionCode();	// 获取app的版本号
+	String adIconUrl = appSummaryObject.ym_method_getIconUrl();	// 获取app的广告图标地址
+	String adtext = appSummaryObject.ym_method_getAdSlogan();	// 获取广告标语
+	String adSize = appSummaryObject.ym_method_getAppSize();	// 获取app的大小
+	int points = appSummaryObject.ym_method_getPoints();	// 获取广告的积分（已完成状态下的广告积分返回值为0）	
+	String pointsUnit =appSummaryObject.ym_method_getPointsUnit();	// 获取广告的积分单位
+	int actionType=appSummaryObject.getActionType();	// 获取广告的类型
+	int adStatus = appSummaryObject.ym_method_getAdTaskStatus();	// 获取广告的完成状态
+	int dlStatus = appSummaryObject.ym_method_getAdDownloadStatus();	// 获取广告的下载状态
+	String steps =appSummaryObject.ym_method_getTaskSteps();	// 任务步骤流程指引
 
 注：
 
@@ -255,18 +255,19 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	int id=appDetailObject.ym_method_getAdId();	// 获取广告id
 	String adName = appDetailObject.ym_method_getAppName();	// 获取app的名称
 	String pn = appDetailObject.ym_method_getPackageName();	// 获取app的包名
+	int versionCode = appDetailObject.ym_method_getVersionCode();	// 获取app的版本号
+	String versionName = appDetailObject.ym_method_getVersionName();	// 获取app的版本名
 	String adIconUrl = appDetailObject.ym_method_getIconUrl();	// 获取app的图标地址
 	String [] ssUrls = appDetailObject.ym_method_getScreenShotUrls();	// 获取app的截图地址列表
-	String size = appDetailObject.ym_method_getAppSize();	// 获取app的大小
-	int adStatus = appDetailObject.ym_method_getAdTaskStatus();		// 获取广告的完成状态
-	int dlStatus = appDetailObject.ym_method_getAdDownloadStatus();		// 获取广告的下载状态
-	String appCat = appDetailObject.ym_method_getAppCategory();	// 获取app的类别
-	int points = appDetailObject.ym_method_getPoints();	// 获取app的积分
-	String versionName = appDetailObject.ym_method_getVersionName();	// 获取app的版本名
-	int versionCode = appDetailObject.ym_method_getVersionCode();	// 获取app的版本号
 	String adSlogan = appDetailObject.ym_method_getAdSlogan();	// 获取广告标语
-	int actionType=appDetailObject.getActionType();	// 获取广告的类型
-	String desc = appDetailObject.ym_method_getDescription();	// 获取app的详细描述
+	String desc = appDetailObject.ym_method_getDescription();	// 获取广告的详细描述
+	String size = appDetailObject.ym_method_getAppSize();	// 获取app的大小
+	int points = appDetailObject.ym_method_getPoints();	// 获取app的积分
+	String pointsUnit =appDetailObject.ym_method_getPointsUnit();	// 获取广告的积分单位
+	String appCat = appDetailObject.ym_method_getAppCategory();	// 获取应用类型
+	int actionType=appDetailObject.getActionType();	// 获取广告类型
+	int adStatus = appDetailObject.ym_method_getAdTaskStatus();	// 获取广告的完成状态
+	int dlStatus = appDetailObject.ym_method_getAdDownloadStatus();	// 获取广告的下载状态
 	String author = appDetailObject.ym_method_getAuthor();	// 获取该app的作者名
 	String steps = appDetailObject.ym_method_getTaskSteps();	// 任务步骤流程指引
 
