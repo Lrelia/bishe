@@ -1,7 +1,7 @@
 有米Android积分墙源数据版本开发者文档
 ===========================
 
-一、基本配置 
+一、基本配置（重要）
 --------------
 
 1.导入SDK
@@ -61,7 +61,7 @@
 	*;  
 	}  
 
-二、初始化及相关工作
+二、初始化及相关工作（重要）
 --------------
 请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码::
 
@@ -74,7 +74,7 @@
 
 	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_onAppExit(); 
 
-三、获取广告列表
+三、获取广告列表（重要）
 --------------
 
 3.1 数据模型
@@ -99,7 +99,7 @@ Ym_Class_AppSummaryObject中集成了一条广告的摘要信息，通过使用Y
 	int points = appSummaryObject.ym_method_getPoints();		// 获取app的积分（已完成状态下的广告积分返回值为0）	
 	String pointsUnit =appSummaryObject.ym_method_getPointsUnit();		// 获取广告的积分单位
 	String adtext = appSummaryObject.ym_method_getAdSlogan();		// 获取广告标语
-	int actionType=appSummaryObject.getActionType();		// 获取广告的类型，其中，3为安装试用类广告，5为注册类广告，其他值请忽略。
+	int actionType=appSummaryObject.getActionType();		// 获取广告的类型
 	String steps =appSummaryObject.ym_method_getTaskSteps();		// 任务步骤流程指
 
 注：
@@ -110,15 +110,15 @@ Ym_Class_AppSummaryObject中集成了一条广告的摘要信息，通过使用Y
 	
 	<未完成>：net.youmi.android.offers.diyoffer.Ym_Class_AdTaskStatus.NOT_COMPLETE;
 	
-*其中：只有<未完成>状态下的广告才可以获取积分，<已完成>状态下的广告是不能获取积分的，同时，方法appSummaryObject.ym_method_getPoints()的返回值也为0*
+*其中：只有<未完成>状态下的广告才可以获取积分；<已完成>状态下的广告是不能获取积分的，同时，<已完成>状态下方法Ym_Class_AppSummaryObject.ym_method_getPoints()的返回值也为0*
 	
 2、广告的下载状态有3种，对应的值分别为：
 	
 	<未下载>：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.NOT_DOWNLOAD;
 	
-	<正在下载>：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.DOWNLOADING；
+	<正在下载>：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.DOWNLOADING;
 	
-	<已经下载>：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.ALERADY_DOWNLOAN。
+	<已经下载>：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.ALERADY_DOWNLOAN;
 	
 3、广告的类型有2种，对应的值分别为：
 	
@@ -163,10 +163,10 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP: 	只请求应用广告
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT: 	请求列表特殊排序，应用先于游戏显示
 	 * @param withAdDownloadUrl 	 广告是否携带url下载地址（可用于实现广告列表页实现下载功能）
-	 *      Ym_Class_DiyOfferWallManager.ym_param_ADLIST_DEFAULT:	不携带（默认值）
-	 *      Ym_Class_DiyOfferWallManager.ym_param_ADLIST_SPECIAL:	携带
+	 *      false:	不携带（默认值）
+	 *      true:	携带
 	 * @return
-	 * 		Ym_Class_AppSummaryObjectList		广告摘要信息列表
+	 * 	Ym_Class_AppSummaryObjectList		广告摘要信息列表
 	 */
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl);
 
@@ -196,8 +196,8 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP:	只请求应用广告
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT:	请求列表特殊排序，应用先于游戏显示
 	 * @param withAdDownloadUrl 	 广告是否携带url下载地址（可用于实现广告列表页实现下载功能）
-	 *      Ym_Class_DiyOfferWallManager.ym_param_ADLIST_DEFAULT:	不携带（默认值）
-	 *      Ym_Class_DiyOfferWallManager.ym_param_ADLIST_SPECIAL:	携带
+	 *      false:	不携带（默认值）
+	 *      true:	携带
 	 */
 	Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_loadOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl,
 			Ym_Class_AppSummaryDataInterface appSummaryDataInterface);
@@ -218,7 +218,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 			new Ym_Class_AppSummaryDataInterface() {
 
 				/**
-				 * 当成功获取到积分墙列表数据的时候会回调这个方法（注意:本接口不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
+				 * 当成功获取积分墙列表数据的时候会回调这个方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
 				 */
 				@Override
 				public void ym_method_onLoadAppSumDataSuccess(Context context, Ym_Class_AppSummaryObjectList adList) {
@@ -229,7 +229,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 				}
 
 				/**
-				 * 当获取到积分墙数据失败的时候会回调这个接口（注意:本接口不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
+				 * 当获取积分墙数据失败的时候会回调这个方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
 				 */
 				@Override
 				public void ym_method_onLoadAppSumDataFailed() {
@@ -240,7 +240,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 		);
 
 
-四、获取广告的详细数据
+四、获取广告的详细数据（重要）
 --------------
 
 4.1 数据模型
@@ -252,27 +252,27 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	...
 	
 	Ym_Class_AppDetailObject appDetailObject;
-	int id=appDetailObject.ym_method_getAdId();	// 获取id
+	int id=appDetailObject.ym_method_getAdId();	// 获取广告id
 	String adName = appDetailObject.ym_method_getAppName();	// 获取app的名称
 	String pn = appDetailObject.ym_method_getPackageName();	// 获取app的包名
 	String adIconUrl = appDetailObject.ym_method_getIconUrl();	// 获取app的图标地址
+	String [] ssUrls = appDetailObject.ym_method_getScreenShotUrls();	// 获取app的截图地址列表
 	String size = appDetailObject.ym_method_getAppSize();	// 获取app的大小
 	int adStatus = appDetailObject.ym_method_getAdTaskStatus();		// 获取广告的完成状态
 	int dlStatus = appDetailObject.ym_method_getAdDownloadStatus();		// 获取广告的下载状态
-	int points = appDetailObject.ym_method_getPoints();	// 获取app的积分
 	String appCat = appDetailObject.ym_method_getAppCategory();	// 获取app的类别
+	int points = appDetailObject.ym_method_getPoints();	// 获取app的积分
 	String versionName = appDetailObject.ym_method_getVersionName();	// 获取app的版本名
 	int versionCode = appDetailObject.ym_method_getVersionCode();	// 获取app的版本号
 	String adSlogan = appDetailObject.ym_method_getAdSlogan();	// 获取广告标语
 	int actionType=appDetailObject.getActionType();	// 获取广告的类型
 	String desc = appDetailObject.ym_method_getDescription();	// 获取app的详细描述
-	String [] ssUrls = appDetailObject.ym_method_getScreenShotUrls();	// 获取app的截图地址列表
 	String author = appDetailObject.ym_method_getAuthor();	// 获取该app的作者名
 	String steps = appDetailObject.ym_method_getTaskSteps();	// 任务步骤流程指引
 
 注：
 
-1、广告的完成状态、下载状态以及广告的类型值请参考上述第三点：获取广告列表
+1、广告的完成状态、下载状态以及广告的类型值请参考上述第三点：获取广告列表中的描述
 
 
 4.2 获取方式
@@ -289,11 +289,12 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	/**
 	 * 获取广告的详细信息（请注意不要在UI线程中直接使用）
 	 * @param Ym_Class_AppSummaryObject				
-	 * 		广告的摘要信息对象，广告的摘要信息对象请参考3.1
+	 * 		广告的摘要信息对象，广告的摘要信息对象请参考3.1节的描述
 	 */
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getAppDetailData(Ym_Class_AppSummaryObject appSummaryObject);
 
-	*示例代码*::
+
+*示例代码*::
 
 	import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
 	import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
@@ -302,7 +303,7 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 这里传入广告的摘要信息数据模型对象
+				// 这里传入广告的摘要信息数据模型对象，以获取广告的详细数据
 				Ym_Class_AppDetailObject data  = Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getAppDetailData(appSummaryObject);
 		 }
 	}).start();
@@ -332,14 +333,14 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadAppDetailData(appSummaryObject, 
 			new Ym_Class_AppDetailDataInterface() {
 		/**
-		 * 当成功加载到数据的时候，会回调本接口（注意:本接口不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
+		 * 当成功加载到数据的时候，会回调本方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
 		 */
 		@Override
 		public void ym_method_onLoadAppDetailDataSuccess(Context context, Ym_Class_AppDetailObject appDetailObject) {
 			Log.d("test",appDetailObject.toString());
 		}
 		/**
-		 * 当加载数据失败的时候，会回调本接口（注意:本接口不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
+		 * 当加载数据失败的时候，会回调本方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
 		 */
 		@Override
 		public void ym_method_onLoadAppDetailDataFailed() {
@@ -348,19 +349,19 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 	});
 
 	
-五、下载和打开应用
+五、下载和打开应用（重要）
 --------------
 通过调用下面方法即可下载（或打开）广告，如果该广告的完成状态为<未完成>，则可获取积分结算
 
 **请注意：打开广告务必调用本方法，否则可能无法获取积分和结算**::
 
 	// 1、传入Ym_Class_AppSummaryObject对象
-	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_downloadApp(appSummaryObject);
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppSummaryObject appSummaryObject);
 	// 2、传入Ym_Class_AppDetailObject对象
-	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_downloadApp(appDetailObject);
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppDetailObject appDetailObject);
 
 	
-六、监听应用的下载和安装
+六、监听应用的下载和安装（可选）
 --------------
 app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。
 
@@ -402,6 +403,8 @@ DiyAppNotify的定义::
     public void onInstallSuccess(int id);
     }
 
+如果需要判断两个app是否为同一个，则可以通过获取它的广告id进行比较即可。
+
 Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
 
     /**
@@ -414,14 +417,13 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
       */
     public void removeListener(DiyAppNotify listener);
 
-如果需要判断两个app是否为同一个，则可以通过获取它的id进行比较即可。
 
-七、其他功能
+七、其他功能（可选）
 --------------
 
 7.1 设置请求广告的数量
 ~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法即可设置每次请求广告列表的长度，如果调用，请在调用获取广告列表的方法之前调用本方法::
+通过调用下面方法即可设置每次请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法::
 
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);
 
