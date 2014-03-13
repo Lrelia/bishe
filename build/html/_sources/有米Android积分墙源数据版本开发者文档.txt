@@ -437,3 +437,12 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
 	// 2、传入Ym_Class_AppDetailObject对象
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);
 	
+7.3 用户数据统计功能
+~~~~~~~~~~~~~~~~~~~~~~~~
+通过调用下面方法可以开启用户数据统计服务，本方法会统计应用的启动用户数，新增用户数，活跃用户数，开发者可以通过开发者后台查看数据::
+
+	// 开启用户数据统计服务,默认不开启，传入false值也不开启，只有传入true才会调用
+	Ym_Class_AdManager.getInstance(Context context).ym_method_setUserDataCollect(true);
+	
+	
+

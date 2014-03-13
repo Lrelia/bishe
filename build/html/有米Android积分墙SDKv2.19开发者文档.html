@@ -71,9 +71,9 @@
 <li><a class="reference internal" href="#">有米Android积分墙开发者文档</a><ul>
 <li><a class="reference internal" href="#id1">一、基本配置</a><ul>
 <li><a class="reference internal" href="#sdk">1.导入SDK</a></li>
-<li><a class="reference internal" href="#id2">2 权限配置</a></li>
-<li><a class="reference internal" href="#id3">3 广告组件配置</a></li>
-<li><a class="reference internal" href="#id4">4 混淆配置</a></li>
+<li><a class="reference internal" href="#id2">2.权限配置</a></li>
+<li><a class="reference internal" href="#id3">3.广告组件配置</a></li>
+<li><a class="reference internal" href="#id4">4.混淆配置</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id5">二、积分墙代码集成</a><ul>
@@ -136,7 +136,7 @@
 <p>将sdk解压后的 <strong>libs</strong> 目录下的jar文件导入到工程指定的libs目录。</p>
 </div>
 <div class="section" id="id2">
-<h3>2 权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>2.权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将下面权限配置代码复制到 AndroidManifest.xml 文件中 :</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
 &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;
@@ -151,7 +151,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h3>3 广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>3.广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将以下配置代码复制到 AndroidManifest.xml 文件中:</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;activity
         android:name=&quot;net.youmi.android.Ym_Class_AdBrowser&quot;
@@ -177,7 +177,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h3>4 混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>4.混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>如果您的项目使用了Proguard混淆打包，为了避免SDK被二次混淆导致无法正常获取广告，请务必在proguard-project.txt中添加以下代码:</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>-dontwarn net.youmi.android.**
     -keep class net.youmi.android.** {
@@ -264,8 +264,8 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(thi
       
     </p>
     <p>
-        &copy; Copyright 2013, Youmi.<br/>
-      Last updated on 2014-03-11.<br/>
+        &copy; Copyright 2014, Youmi.<br/>
+      Last updated on 2014-03-13.<br/>
     </p>
   </div>
 </footer>

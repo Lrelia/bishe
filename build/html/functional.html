@@ -70,9 +70,9 @@
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">SDK实用工具</a><ul>
 <li><a class="reference internal" href="#id2">1.检查更新接口</a></li>
-<li><a class="reference internal" href="#id3">2.在线参数</a><ul>
-<li><a class="reference internal" href="#id4">2.1 在线参数介绍</a></li>
-<li><a class="reference internal" href="#id5">2.2 使用在线参数</a></li>
+<li><a class="reference internal" href="#id4">2.在线参数</a><ul>
+<li><a class="reference internal" href="#id5">2.1 在线参数介绍</a></li>
+<li><a class="reference internal" href="#id6">2.2 使用在线参数</a></li>
 </ul>
 </li>
 </ul>
@@ -119,7 +119,7 @@
 <div class="section" id="id2">
 <h2>1.检查更新接口<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>有米广告SDK提供应用版本检查更新接口，您可以在应用中调用提示用户升级。
-通过在`有米主站 &lt;<a class="reference external" href="https://www.youmi.net">https://www.youmi.net</a>&gt;`_ 上传应用的新版本通过审核后，使用有米广告SDK的应用版本检查更新接口就可以获得更新信息，它包括更新提示和下载地址，这样您可以进行下一步的操作，如向用户提示更新以及下载安装新版本。</p>
+通过在 <a class="reference external" href="https://www.youmi.net">[有米主站]</a> 上传应用的新版本通过审核后，使用有米广告SDK的应用版本检查更新接口就可以获得更新信息，它包括更新提示和下载地址，这样您可以进行下一步的操作，如向用户提示更新以及下载安装新版本。</p>
 <p><em>接口:</em></p>
 <div class="highlight-python"><div class="highlight"><pre>...
 import net.youmi.android.Ym_Class_AdManager
@@ -242,15 +242,15 @@ public void onCheckAppUpdateFinish(Ym_Class_AppUpdateInfo updateInfo) {
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>2.在线参数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id4">
-<h3>2.1 在线参数介绍<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h2>2.在线参数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>2.1 在线参数介绍<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>在线参数是有米平台推出的新服务，可以让开发者动态修改应用中的配置项，如欢迎语、道具价格、广告开关等等。它以Key-Value的形式使用。</p>
 </div>
-<div class="section" id="id5">
-<h3>2.2 使用在线参数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>开发者可以在[有米主站](<a class="reference external" href="https://www.youmi.net">https://www.youmi.net</a>)开发者面板的应用详情里面设置指定应用的在线参数，然后在代码中调用它。接口示例如下:</p>
+<div class="section" id="id6">
+<h3>2.2 使用在线参数<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>开发者可以在 <a class="reference external" href="https://www.youmi.net">[有米主站]</a>  开发者面板的应用详情里面设置指定应用的在线参数，然后在代码中调用它。接口示例如下:</p>
 <p><em>示例代码</em>:</p>
 <div class="highlight-python"><div class="highlight"><pre>import net.youmi.android.Ym_Class_AdManager;
 import net.youmi.android.dev.Ym_Class_OnlineConfigCallBack; //异步回调
@@ -294,8 +294,8 @@ Ym_Class_AdManager.getInstance(this).ym_method_asyncGetOnlineConfig(mykey, new Y
       
     </p>
     <p>
-        &copy; Copyright 2013, Youmi.<br/>
-      Last updated on 2014-03-07.<br/>
+        &copy; Copyright 2014, Youmi.<br/>
+      Last updated on 2014-03-13.<br/>
     </p>
   </div>
 </footer>

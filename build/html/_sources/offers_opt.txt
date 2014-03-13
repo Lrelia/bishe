@@ -3,13 +3,12 @@
 
 `返回上一层 <javascript:history.back();>`_
 
-
 1.刷新积分余额UI显示
 --------------------
 
 如果您在UI上显示用户的积分账户余额，用户的积分余额可能会因为各种可能的原因导致余额变动(增减)，这时候您需要刷新UI上的显示值，可以通过以下方法实现积分余额在UI上的自动刷新。
 
-1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。
+(1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。
 
 接口定义如下: ::
 
@@ -30,11 +29,11 @@
 	}
 
 
-2)在UI初始化后调用: ::
+(2)在UI初始化后调用: ::
 
 	net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_registerNotify(notifyObject);
 	
-3)在UI销毁前调用以下代码释放Notify引用，以防止造成内存漏洞: ::
+(3)在UI销毁前调用以下代码释放Notify引用，以防止造成内存漏洞: ::
 
 	net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_unRegisterNotify(notifyObject);
 	
@@ -87,7 +86,7 @@
 附录:积分订单类定义
  
 
- Ym_Class_EarnPointsOrderList: ::
+Ym_Class_EarnPointsOrderList: ::
  
 	package net.youmi.android.offers;
 	...
@@ -115,7 +114,7 @@
 	} 
  
 
- Ym_Class_EarnPointsOrderInfo: ::
+Ym_Class_EarnPointsOrderInfo: ::
 
 
 	package net.youmi.android.offers; 
