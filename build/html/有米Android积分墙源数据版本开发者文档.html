@@ -49,7 +49,7 @@
         </button>
         <a class="navbar-brand" href="index.html"><img src="_static/logo.png">
           有米广告SDK文档</a>
-        <span class="navbar-text navbar-version pull-left"><b>4.06</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>v4.08</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -90,11 +90,12 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#id15">五、下载和打开应用（重要）</a></li>
-<li><a class="reference internal" href="#id16">六、监听应用的下载和安装（可选）</a></li>
-<li><a class="reference internal" href="#id17">七、其他功能（可选）</a><ul>
-<li><a class="reference internal" href="#id18">7.1 设置请求广告的数量</a></li>
-<li><a class="reference internal" href="#id19">7.2 签到功能</a></li>
-<li><a class="reference internal" href="#id20">7.3 用户数据统计功能</a></li>
+<li><a class="reference internal" href="#id16">六、积分相关操作功能（重要）</a></li>
+<li><a class="reference internal" href="#id18">七、监听应用的下载和安装（可选）</a></li>
+<li><a class="reference internal" href="#id19">八、其他功能（可选）</a><ul>
+<li><a class="reference internal" href="#id20">7.1 设置请求广告的数量</a></li>
+<li><a class="reference internal" href="#id21">7.2 签到功能</a></li>
+<li><a class="reference internal" href="#id22">7.3 用户数据统计功能</a></li>
 </ul>
 </li>
 </ul>
@@ -481,7 +482,11 @@ Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownlo
 </div>
 </div>
 <div class="section" id="id16">
-<h2>六、监听应用的下载和安装（可选）<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<h2>六、积分相关操作功能（重要）<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>积分墙源数据版本SDK提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 <a class="reference external" href="offers_opt.html">积分墙高级功能</a> 。</p>
+</div>
+<div class="section" id="id18">
+<h2>七、监听应用的下载和安装（可选）<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
 <p>app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。</p>
 <p>通过实现net.youmi.android.offers.diyoffer.DiyAppNotify这个接口，并且在界面初始化后向net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager的``registerListener方法注册监听即可让界面随时获得app的下载安装状态，在界面销毁时，请务必调用removeListener方法注销监听。</p>
 <p>DiyAppNotify的定义:</p>
@@ -534,17 +539,17 @@ public void removeListener(DiyAppNotify listener);
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>七、其他功能（可选）<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id18">
-<h3>7.1 设置请求广告的数量<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h2>八、其他功能（可选）<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h3>7.1 设置请求广告的数量<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p>通过调用下面方法即可设置每次请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法:</p>
 <div class="highlight-python"><div class="highlight"><pre>Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>7.2 签到功能<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>7.2 签到功能<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>通过调用下面方法可以为&lt;已完成&gt;状态的广告进行签到:</p>
 <div class="highlight-python"><div class="highlight"><pre>// 1、传入Ym_Class_AppSummaryObject对象
 Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppSummaryObject appSummaryObject);
@@ -553,8 +558,8 @@ Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInAc
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>7.3 用户数据统计功能<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>7.3 用户数据统计功能<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>通过调用下面方法可以开启用户数据统计服务，本方法会统计应用的启动用户数，新增用户数，活跃用户数，开发者可以通过开发者后台查看数据:</p>
 <div class="highlight-python"><div class="highlight"><pre>// 开启用户数据统计服务,默认不开启，传入false值也不开启，只有传入true才会调用
 Ym_Class_AdManager.getInstance(Context context).ym_method_setUserDataCollect(true);

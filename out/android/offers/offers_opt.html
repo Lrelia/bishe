@@ -1,12 +1,3 @@
-
-  
-  
- 
-  
-  
- 
-
-
 <!DOCTYPE html>
 
 
@@ -56,8 +47,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">有米广告SDK文档</a>
-        <span class="navbar-text navbar-version pull-left"><b>v4.06</b></span>
+        <a class="navbar-brand" href="index.html"><img src="_static/logo.png">
+          有米广告SDK文档</a>
+        <span class="navbar-text navbar-version pull-left"><b>v4.08</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -97,7 +89,7 @@
             
             
             
-              <li></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -127,7 +119,7 @@
 <p>如果您在UI上显示用户的积分账户余额，用户的积分余额可能会因为各种可能的原因导致余额变动(增减)，这时候您需要刷新UI上的显示值，可以通过以下方法实现积分余额在UI上的自动刷新。</p>
 <p>(1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。</p>
 <p>接口定义如下:</p>
-<div class="highlight-python"><pre>package net.youmi.android.offers;
+<div class="highlight-python"><div class="highlight"><pre>package net.youmi.android.offers;
 
 /**
 * 积分余额增减变动监听器
@@ -141,7 +133,8 @@ public interface Ym_Class_PointsChangeNotify {
  */
 public void ym_method_onPointBalanceChange(int pointsBalance);
 
-}</pre>
+}
+</pre></div>
 </div>
 <p>(2)在UI初始化后调用:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_registerNotify</span><span class="p">(</span><span class="n">notifyObject</span><span class="p">);</span>
@@ -157,7 +150,7 @@ public void ym_method_onPointBalanceChange(int pointsBalance);
 <p>用户完成了一次积分任务并在有米服务器成功结算后，可以通过以下方法让SDK回调通知应用用户所完成的订单:</p>
 <p>第一步，您需要定义一个MyPointsReceiver类(名字可以随意)，它必须继承自net.youmi.android.offers.Ym_Class_PointsReceiver:</p>
 <p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>package com.test;
+<div class="highlight-python"><div class="highlight"><pre>package com.test;
 import android.content.Context;
 import net.youmi.android.offers.Ym_Class_EarnPointsOrderList;
 import net.youmi.android.offers.Ym_Class_PointsReceiver;
@@ -170,26 +163,28 @@ public class MyPointsReceiver extends Ym_Class_PointsReceiver{
         @Override
         protected void ym_method_onViewPoints(Context context) {
                 //这里是个有趣的小功能，当用户赚取积分之后，积分墙SDK会在通知栏上显示一条获取积分的提示，如果用户点击了这个通知，该函数会被调用。
-                //这时候您可以在这里实现一个跳转，让用户跳转到您设计好的一个积分账户余额页面(如"我的账户"之类的Activity)。
+                //这时候您可以在这里实现一个跳转，让用户跳转到您设计好的一个积分账户余额页面(如&quot;我的账户&quot;之类的Activity)。
                 //该操作是可选的，如果需要关闭通知栏积分提示，请调用PointsManager.getInstance(context).setEnableEarnPointsNotification(false)
         }
-}</pre>
+}
+</pre></div>
 </div>
 <p>第二步，您需要在AndroidManifest.xml上配置刚刚定义的 MyPointsReceiver:</p>
 <p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>&lt;receiver
-        android:name="MyPointsReceiver"
-        android:exported="false" &gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;receiver
+        android:name=&quot;MyPointsReceiver&quot;
+        android:exported=&quot;false&quot; &gt;
         &lt;intent-filter&gt;
-                &lt;action android:name="ep_请替换为您的AppID" /&gt;
-                &lt;action android:name="vp_请替换为您的AppID" /&gt;
+                &lt;action android:name=&quot;ep_请替换为您的AppID&quot; /&gt;
+                &lt;action android:name=&quot;vp_请替换为您的AppID&quot; /&gt;
         &lt;/intent-filter&gt;
-&lt;/receiver&gt;</pre>
+&lt;/receiver&gt;
+</pre></div>
 </div>
 <p>注意:这里有一个很关键的细节，您必须为MyPointsReceiver配置两个Action，Action的名字分别是**以&#8221;ep_&#8221;和&#8221;vp_&#8221;开头**，以您的应用的AppID结尾的字符串。（AppID是从有米主站上申请的应用ID，16个字符，所以Action的总长度应该是19个字符）</p>
 <p>附录:积分订单类定义</p>
 <p>Ym_Class_EarnPointsOrderList:</p>
-<div class="highlight-python"><pre>package net.youmi.android.offers;
+<div class="highlight-python"><div class="highlight"><pre>package net.youmi.android.offers;
 ...
 /**
  * 积分订单列表
@@ -212,10 +207,11 @@ public class Ym_Class_EarnPointsOrderList {
          * 获取列表项数量
          */
         public int size();
-}</pre>
+}
+</pre></div>
 </div>
 <p>Ym_Class_EarnPointsOrderInfo:</p>
-<div class="highlight-python"><pre>package net.youmi.android.offers;
+<div class="highlight-python"><div class="highlight"><pre>package net.youmi.android.offers;
 /**
  * 赚取积分的订单
  */
@@ -237,7 +233,7 @@ public final class Ym_Class_EarnPointsOrderInfo {
          */
         public int getStatus()
         /**
-         * 本次获取积分的描述语，如"成功安装《--》获取了100金币"
+         * 本次获取积分的描述语，如&quot;成功安装《--》获取了100金币&quot;
          */
         public String getMessage();
         /**
@@ -248,7 +244,8 @@ public final class Ym_Class_EarnPointsOrderInfo {
          * 本次获得积分的结算时间
          */
         public long getSettlingTime();
-}</pre>
+}
+</pre></div>
 </div>
 </div>
 <div class="section" id="id3">
@@ -259,10 +256,11 @@ public final class Ym_Class_EarnPointsOrderInfo {
 <div class="section" id="id4">
 <h2>4.验证积分墙配置是否正确<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>嵌入SDK时如果配置有误有可能会导致没有收入或者获取不到积分，在完成文档中的配置之后可以通过调用以下接口查看配置是否正确:</p>
-<div class="highlight-python"><pre>//积分墙配置检查(没有使用"通过SDK获取积分订单"功能):
+<div class="highlight-python"><div class="highlight"><pre>//积分墙配置检查(没有使用&quot;通过SDK获取积分订单&quot;功能):
 bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig();
-//积分墙配置检查(使用"通过SDK获取积分订单"功能):
-bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig(true);</pre>
+//积分墙配置检查(使用&quot;通过SDK获取积分订单&quot;功能):
+bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig(true);
+</pre></div>
 </div>
 <p><strong>注意,该接口调用的结果如果返回true，则说明配置正确，可以删掉该调用。如果返回false，则需要查看logcat的相关输出，里面有指出哪些相关的配置错误内容。</strong></p>
 </div>
@@ -290,7 +288,7 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(con
     </p>
     <p>
         &copy; Copyright 2014, Youmi.<br/>
-      Last updated on 2014-02-15.<br/>
+      Last updated on 2014-03-13.<br/>
     </p>
   </div>
 </footer>

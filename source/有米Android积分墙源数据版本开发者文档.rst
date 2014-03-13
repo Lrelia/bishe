@@ -356,13 +356,18 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 
 **请注意：打开广告务必调用本方法，否则可能无法获取积分和结算**::
 
-	// 1、传入Ym_Class_AppSummaryObject对象
+	// 1、传入Ym_Class_AppSummaryObject对象	
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppSummaryObject appSummaryObject);
 	// 2、传入Ym_Class_AppDetailObject对象
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppDetailObject appDetailObject);
 
 	
-六、监听应用的下载和安装（可选）
+六、积分相关操作功能（重要）
+------------------
+积分墙源数据版本SDK提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 `积分墙高级功能 <offers_opt.html>`_ 。
+
+	
+七、监听应用的下载和安装（可选）
 --------------
 app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。
 
@@ -419,7 +424,7 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
     public void removeListener(DiyAppNotify listener);
 
 
-七、其他功能（可选）
+八、其他功能（可选）
 --------------
 
 7.1 设置请求广告的数量
