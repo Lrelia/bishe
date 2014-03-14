@@ -135,6 +135,10 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 
 	public class Ym_Class_AppSummaryObjectList {
 		/**
+		 * 添加广告
+		 */
+		public boolean add(Ym_Class_AppSummaryObject object);
+		/**
 		 * 获取指定索引的广告的摘要信息
 		 */
 		public Ym_Class_AppSummaryObject get(int index);
@@ -151,13 +155,12 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 3.2 获取方式
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**获取积分墙列表数据有两种方式，一种为同步加载，一种为异步加载**  
+**获取积分墙列表数据有两种方式，一种为同步加载，一种为异步加载**
 
 1、同步加载方式(请注意在非UI线程中使用)::
 
 	/**
 	 * 获取积分墙列表数据
-	 * @param pageIndex		请求页码(正整数，从1开始)
 	 * @param requestType	 	请求类型
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:	所有（默认值）
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME: 	只请求游戏广告
@@ -169,7 +172,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 * @return
 	 * 	Ym_Class_AppSummaryObjectList		广告摘要信息列表
 	 */
-	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl);
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int requestType, boolean withAdDownloadUrl);
 
 *示例代码*::
 
@@ -177,12 +180,12 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
 	...
 
-	// 请求第一页广告，广告类型不限，广告附带url下载地址
+	// 请求广告类型不限，广告附带url下载地址
 	new Thread(new Runnable() {
 		 @Override
 		 public void run() {
 			 Ym_Class_AppSummaryObjectList data =
-					 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getOfferWallAdList(1, Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, true);
+					 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, true);
 		 }
 	}).start();
 
@@ -190,7 +193,6 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 
 	/**
 	 * 异步加载积分墙数据列表
-	 * @param pageIndex	请求页码(正整数，从1开始)
 	 * @param requestType	请求类型
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:	所有（默认值）
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME:	只请求游戏广告
@@ -200,7 +202,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 *      false:	不携带（默认值）
 	 *      true:	携带
 	 */
-	Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_loadOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl,
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_loadOfferWallAdList(int requestType, boolean withAdDownloadUrl,
 			Ym_Class_AppSummaryDataInterface appSummaryDataInterface);
 
 *示例代码*::
@@ -215,7 +217,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 * 请求第一页广告，广告类型不限，广告不附带下载地址
 	 */
 	 
-	 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadOfferWallAdList(1, Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, false,
+	 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, false,
 			new Ym_Class_AppSummaryDataInterface() {
 
 				/**
@@ -460,19 +462,35 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
 八、其他功能（可选）
 --------------
 
-7.1 设置请求广告的数量
+8.1 设置请求广告的数量
 ~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法即可设置每次请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法::
+通过调用下面方法即可设置请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法::
 
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);
 
-7.2 签到功能
+8.2 签到功能
 ~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法可以为<已完成>状态的广告进行签到::
+签到功能提供对<已完成>状态的广告进行签到，以提高广告的效果，下面展示简单用法：
 
-	// 1、传入Ym_Class_AppSummaryObject对象
+首先通过调用下面方法获取签到列表，**请注意在非UI线程中调用本方法**。
+
+*示例*::
+
+	new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Ym_Class_AppSummaryObjectList list = Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getSignInAdList();
+			}
+			
+	}).start();
+
+然后通过调用下面方法可以为签到列表上的广告进行签到::
+
+	// 1、通过传入Ym_Class_AppSummaryObject对象进行签到
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppSummaryObject appSummaryObject);
-	// 2、传入Ym_Class_AppDetailObject对象
+	// 2、通过传入Ym_Class_AppDetailObject对象进行签到
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);
 	
 九、SDK实用工具（可选）
