@@ -65,14 +65,15 @@
 --------------
 请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码::
 
-	net.youmi.android.Ym_Class_AdManager.getInstance(context).init("AppId","AppSecret", false); 
-	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_onAppLaunch(); 
+	net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId","AppSecret", false); 
+	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch(); 
 
-其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得。
+其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得；
+最后的boolean值为是否开启测试模式，true为是，false为否。
 
 然后在应用退出的地方（如：onDestroy）中调用下面方法以释放资源::
 
-	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_onAppExit(); 
+	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppExit(); 
 
 三、获取广告列表（重要）
 --------------
@@ -363,7 +364,39 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 
 	
 六、积分相关操作功能（重要）
-------------------
+--------------
+
+6.1 查询积分余额
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，查询用户的积分账户余额: ::
+
+	int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
+	
+注意，该接口直接返回int型的积分余额。
+	
+
+6.2 扣除积分
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，扣除用户积分账户余额: ::
+    
+	int amount=100;//示例扣除100积分。
+	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+	
+注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。
+
+6.3 增加积分
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，往用户积分账户余额增加积分: ::
+
+	int amount=100;//示例增加100积分。
+	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+	
+注意，该接口直接返回增加积分结果，成功返回true，否则返回false。
+
+	
 积分墙源数据版本SDK提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 `积分墙高级功能 <offers_opt.html>`_ 。
 
 	
@@ -442,12 +475,9 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
 	// 2、传入Ym_Class_AppDetailObject对象
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);
 	
-7.3 用户数据统计功能
-~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法可以开启用户数据统计服务，本方法会统计应用的启动用户数，新增用户数，活跃用户数，开发者可以通过开发者后台查看数据::
+九、SDK实用工具（可选）
+---------------
 
-	// 开启用户数据统计服务,默认不开启，传入false值也不开启，只有传入true才会调用
-	Ym_Class_AdManager.getInstance(Context context).ym_method_setUserDataCollect(true);
-	
+SDK实用功能提供了检查更新和在线配置等功能，可以为您提供便捷的实用工具。`更多详情 <functional.html>`_
 	
 
