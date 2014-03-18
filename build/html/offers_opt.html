@@ -117,7 +117,7 @@
 <div class="section" id="ui">
 <h2>1.刷新积分余额UI显示<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h2>
 <p>如果您在UI上显示用户的积分账户余额，用户的积分余额可能会因为各种可能的原因导致余额变动(增减)，这时候您需要刷新UI上的显示值，可以通过以下方法实现积分余额在UI上的自动刷新。</p>
-<p>1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。</p>
+<p>(1)让UI相关的类(可以是Activity或View相关的类) implements net.youmi.android.offers.Ym_Class_PointsChangeNotify这个接口。</p>
 <p>接口定义如下:</p>
 <div class="highlight-python"><div class="highlight"><pre>package net.youmi.android.offers;
 
@@ -136,11 +136,11 @@ public void ym_method_onPointBalanceChange(int pointsBalance);
 }
 </pre></div>
 </div>
-<p>2)在UI初始化后调用:</p>
+<p>(2)在UI初始化后调用:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_registerNotify</span><span class="p">(</span><span class="n">notifyObject</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>3)在UI销毁前调用以下代码释放Notify引用，以防止造成内存漏洞:</p>
+<p>(3)在UI销毁前调用以下代码释放Notify引用，以防止造成内存漏洞:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_unRegisterNotify</span><span class="p">(</span><span class="n">notifyObject</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -183,8 +183,7 @@ public class MyPointsReceiver extends Ym_Class_PointsReceiver{
 </div>
 <p>注意:这里有一个很关键的细节，您必须为MyPointsReceiver配置两个Action，Action的名字分别是**以&#8221;ep_&#8221;和&#8221;vp_&#8221;开头**，以您的应用的AppID结尾的字符串。（AppID是从有米主站上申请的应用ID，16个字符，所以Action的总长度应该是19个字符）</p>
 <p>附录:积分订单类定义</p>
-<blockquote>
-<div><p>Ym_Class_EarnPointsOrderList:</p>
+<p>Ym_Class_EarnPointsOrderList:</p>
 <div class="highlight-python"><div class="highlight"><pre>package net.youmi.android.offers;
 ...
 /**
@@ -248,7 +247,6 @@ public final class Ym_Class_EarnPointsOrderInfo {
 }
 </pre></div>
 </div>
-</div></blockquote>
 </div>
 <div class="section" id="id3">
 <h2>3.通过服务器获取积分订单<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -289,8 +287,8 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(con
       
     </p>
     <p>
-        &copy; Copyright 2013, Youmi.<br/>
-      Last updated on 2014-03-07.<br/>
+        &copy; Copyright 2014, Youmi.<br/>
+      Last updated on 2014-03-14.<br/>
     </p>
   </div>
 </footer>

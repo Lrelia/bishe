@@ -71,9 +71,9 @@
 <li><a class="reference internal" href="#">有米Android积分墙开发者文档</a><ul>
 <li><a class="reference internal" href="#id1">一、基本配置</a><ul>
 <li><a class="reference internal" href="#sdk">1.导入SDK</a></li>
-<li><a class="reference internal" href="#id2">2 权限配置</a></li>
-<li><a class="reference internal" href="#id3">3 广告组件配置</a></li>
-<li><a class="reference internal" href="#id4">4 混淆配置</a></li>
+<li><a class="reference internal" href="#id2">2.权限配置</a></li>
+<li><a class="reference internal" href="#id3">3.广告组件配置</a></li>
+<li><a class="reference internal" href="#id4">4.混淆配置</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id5">二、积分墙代码集成</a><ul>
@@ -136,7 +136,7 @@
 <p>将sdk解压后的 <strong>libs</strong> 目录下的jar文件导入到工程指定的libs目录。</p>
 </div>
 <div class="section" id="id2">
-<h3>2 权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>2.权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将下面权限配置代码复制到 AndroidManifest.xml 文件中 :</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
 &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;
@@ -151,15 +151,19 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h3>3 广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>3.广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将以下配置代码复制到 AndroidManifest.xml 文件中:</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;activity
         android:name=&quot;net.youmi.android.Ym_Class_AdBrowser&quot;
-        android:configChanges=&quot;keyboard|keyboardHidden|orientation&quot;
+        android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenSize&quot;
         android:theme=&quot;@android:style/Theme.Light.NoTitleBar&quot; &gt;
 &lt;/activity&gt;
 &lt;service
         android:name=&quot;net.youmi.android.Ym_Class_AdService&quot;
+        android:exported=&quot;false&quot; &gt;
+&lt;/service&gt;
+&lt;service
+        android:name=&quot;net.youmi.android.Ym_Class_ExpService&quot;
         android:exported=&quot;false&quot; &gt;
 &lt;/service&gt;
 &lt;receiver
@@ -177,7 +181,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h3>4 混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>4.混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>如果您的项目使用了Proguard混淆打包，为了避免SDK被二次混淆导致无法正常获取广告，请务必在proguard-project.txt中添加以下代码:</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>-dontwarn net.youmi.android.**
     -keep class net.youmi.android.** {
@@ -192,11 +196,16 @@
 <div class="section" id="id6">
 <h3>1.初始化<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">Ym_Class_AdManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">&quot;AppId&quot;</span><span class="p">,</span><span class="s">&quot;AppSecret&quot;</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
-<span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_OffersManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_onAppLaunch</span><span class="p">();</span>
+<div class="highlight-python"><div class="highlight"><pre>net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init(&quot;AppId&quot;,&quot;AppSecret&quot;, false);
+net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppLaunch();
 </pre></div>
 </div>
-<p>其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-<a class="reference external" href="http://www.youmi.net/apps/view">应用详细信息</a>  可以获得。</p>
+<p>其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-<a class="reference external" href="http://www.youmi.net/apps/view">应用详细信息</a>  可以获得；
+最后的boolean值为是否开启测试模式，true为是，false为否。</p>
+<p>然后在应用退出的地方（如：OnDestroy方法）中调用下面方法以释放资源:</p>
+<div class="highlight-python"><div class="highlight"><pre>net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppExit();
+</pre></div>
+</div>
 </div>
 <div class="section" id="id8">
 <h3>2.积分管理接口<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -264,8 +273,8 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(thi
       
     </p>
     <p>
-        &copy; Copyright 2013, Youmi.<br/>
-      Last updated on 2014-03-07.<br/>
+        &copy; Copyright 2014, Youmi.<br/>
+      Last updated on 2014-03-14.<br/>
     </p>
   </div>
 </footer>

@@ -65,14 +65,15 @@
 --------------
 请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码::
 
-	net.youmi.android.Ym_Class_AdManager.getInstance(context).init("AppId","AppSecret", false); 
-	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_onAppLaunch(); 
+	net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId","AppSecret", false); 
+	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch(); 
 
-其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得。
+其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得；
+最后的boolean值为是否开启测试模式，true为是，false为否。
 
 然后在应用退出的地方（如：onDestroy）中调用下面方法以释放资源::
 
-	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_onAppExit(); 
+	net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppExit(); 
 
 三、获取广告列表（重要）
 --------------
@@ -134,6 +135,10 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 
 	public class Ym_Class_AppSummaryObjectList {
 		/**
+		 * 添加广告
+		 */
+		public boolean add(Ym_Class_AppSummaryObject object);
+		/**
 		 * 获取指定索引的广告的摘要信息
 		 */
 		public Ym_Class_AppSummaryObject get(int index);
@@ -150,13 +155,12 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 3.2 获取方式
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**获取积分墙列表数据有两种方式，一种为同步加载，一种为异步加载**  
+**获取积分墙列表数据有两种方式，一种为同步加载，一种为异步加载**
 
 1、同步加载方式(请注意在非UI线程中使用)::
 
 	/**
 	 * 获取积分墙列表数据
-	 * @param pageIndex		请求页码(正整数，从1开始)
 	 * @param requestType	 	请求类型
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:	所有（默认值）
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME: 	只请求游戏广告
@@ -168,7 +172,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 * @return
 	 * 	Ym_Class_AppSummaryObjectList		广告摘要信息列表
 	 */
-	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl);
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int requestType, boolean withAdDownloadUrl);
 
 *示例代码*::
 
@@ -176,12 +180,12 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
 	...
 
-	// 请求第一页广告，广告类型不限，广告附带url下载地址
+	// 请求广告类型不限，广告附带url下载地址
 	new Thread(new Runnable() {
 		 @Override
 		 public void run() {
 			 Ym_Class_AppSummaryObjectList data =
-					 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getOfferWallAdList(1, Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, true);
+					 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, true);
 		 }
 	}).start();
 
@@ -189,7 +193,6 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 
 	/**
 	 * 异步加载积分墙数据列表
-	 * @param pageIndex	请求页码(正整数，从1开始)
 	 * @param requestType	请求类型
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:	所有（默认值）
 	 *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME:	只请求游戏广告
@@ -199,7 +202,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 *      false:	不携带（默认值）
 	 *      true:	携带
 	 */
-	Ym_Class_DiyOfferWallManager.getInstance(context).ym_method_loadOfferWallAdList(int pageIndex, int requestType, boolean withAdDownloadUrl,
+	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_loadOfferWallAdList(int requestType, boolean withAdDownloadUrl,
 			Ym_Class_AppSummaryDataInterface appSummaryDataInterface);
 
 *示例代码*::
@@ -214,7 +217,7 @@ Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_App
 	 * 请求第一页广告，广告类型不限，广告不附带下载地址
 	 */
 	 
-	 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadOfferWallAdList(1, Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, false,
+	 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, false,
 			new Ym_Class_AppSummaryDataInterface() {
 
 				/**
@@ -356,13 +359,50 @@ Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class
 
 **请注意：打开广告务必调用本方法，否则可能无法获取积分和结算**::
 
-	// 1、传入Ym_Class_AppSummaryObject对象
+	// 1、传入Ym_Class_AppSummaryObject对象	
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppSummaryObject appSummaryObject);
 	// 2、传入Ym_Class_AppDetailObject对象
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppDetailObject appDetailObject);
 
 	
-六、监听应用的下载和安装（可选）
+六、积分相关操作功能（重要）
+--------------
+
+6.1 查询积分余额
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，查询用户的积分账户余额: ::
+
+	int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
+	
+注意，该接口直接返回int型的积分余额。
+	
+
+6.2 扣除积分
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，扣除用户积分账户余额: ::
+    
+	int amount=100;//示例扣除100积分。
+	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+	
+注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。
+
+6.3 增加积分
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+调用以下接口，往用户积分账户余额增加积分: ::
+
+	int amount=100;//示例增加100积分。
+	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+	
+注意，该接口直接返回增加积分结果，成功返回true，否则返回false。
+
+	
+积分墙源数据版本SDK提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 `积分墙高级功能 <offers_opt.html>`_ 。
+
+	
+七、监听应用的下载和安装（可选）
 --------------
 app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。
 
@@ -419,21 +459,43 @@ Ym_Class_DiyOfferWallManager关于下载安装监听器的调用::
     public void removeListener(DiyAppNotify listener);
 
 
-七、其他功能（可选）
+八、其他功能（可选）
 --------------
 
-7.1 设置请求广告的数量
+8.1 设置请求广告的数量
 ~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法即可设置每次请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法::
+通过调用下面方法即可设置请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法::
 
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);
 
-7.2 签到功能
+8.2 签到功能
 ~~~~~~~~~~~~~~~~~~~~~~~~
-通过调用下面方法可以为<已完成>状态的广告进行签到::
+签到功能提供对<已完成>状态的广告进行签到，以提高广告的效果，下面展示简单用法：
 
-	// 1、传入Ym_Class_AppSummaryObject对象
+首先通过调用下面方法获取签到列表，**请注意在非UI线程中调用本方法**。
+
+*示例*::
+
+	new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Ym_Class_AppSummaryObjectList list = Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getSignInAdList();
+			}
+			
+	}).start();
+
+然后通过调用下面方法可以为签到列表上的广告进行签到::
+
+	// 1、通过传入Ym_Class_AppSummaryObject对象进行签到
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppSummaryObject appSummaryObject);
-	// 2、传入Ym_Class_AppDetailObject对象
+	// 2、通过传入Ym_Class_AppDetailObject对象进行签到
 	Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);
 	
+九、SDK实用工具（可选）
+---------------
+
+SDK实用功能提供了检查更新和在线配置等功能，可以为您提供便捷的实用工具。`更多详情 <functional.html>`_
+	
+

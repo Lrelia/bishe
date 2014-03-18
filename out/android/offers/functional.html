@@ -1,12 +1,3 @@
-
-  
-  
- 
-  
-  
- 
-
-
 <!DOCTYPE html>
 
 
@@ -56,8 +47,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">有米广告SDK文档</a>
-        <span class="navbar-text navbar-version pull-left"><b>v4.06</b></span>
+        <a class="navbar-brand" href="index.html"><img src="_static/logo.png">
+          有米广告SDK文档</a>
+        <span class="navbar-text navbar-version pull-left"><b>v4.08</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -83,6 +75,11 @@
 <li><a class="reference internal" href="#id6">2.2 使用在线参数</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id8">3.用户数据统计功能</a><ul>
+<li><a class="reference internal" href="#id9">3.1 用户数据统计功能介绍</a></li>
+<li><a class="reference internal" href="#id10">3.2 使用方式</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -98,7 +95,7 @@
             
             
             
-              <li></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -129,7 +126,7 @@
 <p>有米广告SDK提供应用版本检查更新接口，您可以在应用中调用提示用户升级。
 通过在 <a class="reference external" href="https://www.youmi.net">[有米主站]</a> 上传应用的新版本通过审核后，使用有米广告SDK的应用版本检查更新接口就可以获得更新信息，它包括更新提示和下载地址，这样您可以进行下一步的操作，如向用户提示更新以及下载安装新版本。</p>
 <p><em>接口:</em></p>
-<div class="highlight-python"><pre>...
+<div class="highlight-python"><div class="highlight"><pre>...
 import net.youmi.android.Ym_Class_AdManager
 import net.youmi.android.dev.Ym_Class_AppUpdateInfo
 import net.youmi.android.dev.Ym_Class_CheckAppUpdateCallBack;
@@ -144,10 +141,11 @@ Ym_Class_AppUpdateInfo updateInfo=Ym_Class_AdManager.getInstance(this).ym_method
 Ym_Class_AdManager.getInstance(this).ym_method_asyncCheckAppUpdate(callback); //注意，此方法可以在任意线程中调用。
 //
 //当updateInfo不为null时，请自行处理提示及下载安装流程。
-...</pre>
+...
+</pre></div>
 </div>
 <p><em>示例(同步接口，必须在非UI线程中调用，示例使用了AsyncTask):</em></p>
-<div class="highlight-python"><pre>import net.youmi.android.Ym_Class_AdManager;
+<div class="highlight-python"><div class="highlight"><pre>import net.youmi.android.Ym_Class_AdManager;
 import net.youmi.android.dev.Ym_Class_AppUpdateInfo;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -181,14 +179,14 @@ protected void onPostExecute(Ym_Class_AppUpdateInfo result) {
     try {
         if (result == null || result.getUrl() == null) {
             //如果Ym_Class_AppUpdateInfo为null或它的url属性为null，则可以判断为没有新版本。
-            Toast.makeText(this, "当前版本已经是最新版", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, &quot;当前版本已经是最新版&quot;, Toast.LENGTH_SHORT).show();
             return;
         }
         //这里简单示例使用一个对话框来显示更新信息
         new AlertDialog.Builder(mContext)
-                .setTitle("发现新版本")
+                .setTitle(&quot;发现新版本&quot;)
                 .setMessage(result.getUpdateTips())//这里是版本更新信息
-                .setNegativeButton("马上升级",
+                .setNegativeButton(&quot;马上升级&quot;,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -199,11 +197,11 @@ protected void onPostExecute(Ym_Class_AppUpdateInfo result) {
                                                         .getUrl()));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 mContext.startActivity(intent);
-                                //ps:这里示例点击"马上升级"按钮之后简单地调用系统浏览器进行新版本的下载，
+                                //ps:这里示例点击&quot;马上升级&quot;按钮之后简单地调用系统浏览器进行新版本的下载，
                                 //但强烈建议开发者实现自己的下载管理流程，这样可以获得更好的用户体验。
                             }
                         })
-                .setPositiveButton("下次再说",
+                .setPositiveButton(&quot;下次再说&quot;,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -215,10 +213,11 @@ protected void onPostExecute(Ym_Class_AppUpdateInfo result) {
                 e.printStackTrace();
             }
     }
-}</pre>
+}
+</pre></div>
 </div>
 <p><em>示例(异步接口，可在任意线程使用):</em></p>
-<div class="highlight-python"><pre>import net.youmi.android.Ym_Class_AdManager;
+<div class="highlight-python"><div class="highlight"><pre>import net.youmi.android.Ym_Class_AdManager;
 import net.youmi.android.dev.Ym_Class_AppUpdateInfo;
 import net.youmi.android.dev.Ym_Class_CheckAppUpdateCallBack;
 import android.content.Context;
@@ -244,7 +243,8 @@ public void onCheckAppUpdateFinish(Ym_Class_AppUpdateInfo updateInfo) {
         //有更新信息
     }
 }
-}</pre>
+}
+</pre></div>
 </div>
 </div>
 <div class="section" id="id4">
@@ -257,10 +257,10 @@ public void onCheckAppUpdateFinish(Ym_Class_AppUpdateInfo updateInfo) {
 <h3>2.2 使用在线参数<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>开发者可以在 <a class="reference external" href="https://www.youmi.net">[有米主站]</a>  开发者面板的应用详情里面设置指定应用的在线参数，然后在代码中调用它。接口示例如下:</p>
 <p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>import net.youmi.android.Ym_Class_AdManager;
+<div class="highlight-python"><div class="highlight"><pre>import net.youmi.android.Ym_Class_AdManager;
 import net.youmi.android.dev.Ym_Class_OnlineConfigCallBack; //异步回调
 ...
-String mykey="mycustomkey";//key
+String mykey=&quot;mycustomkey&quot;;//key
 String defaultValue=null;//默认的value，当获取不到在线参数时，会返回该值
 //1.同步调用方法，务必在非UI线程中调用，否则可能会失败。
 String value=Ym_Class_AdManager.getInstance(context).ym_method_syncGetOnlineConfig(key,
@@ -279,9 +279,25 @@ Ym_Class_AdManager.getInstance(this).ym_method_asyncGetOnlineConfig(mykey, new Y
         //获取在线参数失败，可能原因有：键值未设置或为空、网络异常、服务器异常
     }
 });
-...</pre>
+...
+</pre></div>
 </div>
 <p><em>注:在线配置服务缓存具有一定的延时，因此在开发者控制面板上更改的配置项客户端可能需要一定的时间才能响应更新。</em></p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>3.用户数据统计功能<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>3.1 用户数据统计功能介绍<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>用户数据统计功能是有米平台Android SDK v4.08之后推出的一个新功能，通过这个功能，开发者可以知道开发者应用的启动用户数、新增用户数、活跃用户数。</p>
+</div>
+<div class="section" id="id10">
+<h3>3.2 使用方式<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>通过调用下面方法可以开启用户数据统计服务，本方法会统计应用的启动用户数，新增用户数，活跃用户数，开发者可以通过开发者后台查看数据:</p>
+<div class="highlight-python"><div class="highlight"><pre>// 开启用户数据统计服务,默认不开启，传入false值也不开启，只有传入true才会调用
+Ym_Class_AdManager.getInstance(Context context).ym_method_setUserDataCollect(true);
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -299,7 +315,7 @@ Ym_Class_AdManager.getInstance(this).ym_method_asyncGetOnlineConfig(mykey, new Y
     </p>
     <p>
         &copy; Copyright 2014, Youmi.<br/>
-      Last updated on 2014-02-15.<br/>
+      Last updated on 2014-03-14.<br/>
     </p>
   </div>
 </footer>
