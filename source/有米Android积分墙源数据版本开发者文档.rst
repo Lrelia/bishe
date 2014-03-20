@@ -66,6 +66,7 @@
 请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码::
 
 	net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId","AppSecret", false); 
+    net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch();
 
 其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得；
 最后的boolean值为是否开启测试模式，true为是，false为否。

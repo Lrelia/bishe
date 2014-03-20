@@ -77,9 +77,6 @@
 其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-`应用详细信息 <http://www.youmi.net/apps/view>`_  可以获得；
 最后的boolean值为是否开启测试模式，true为是，false为否。
 
-然后在应用退出的地方（如：OnDestroy方法）中调用下面方法以释放资源::
-	
-	net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppExit();
 
 
 

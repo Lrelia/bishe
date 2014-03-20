@@ -1,3 +1,12 @@
+
+  
+  
+ 
+  
+  
+ 
+
+
 <!DOCTYPE html>
 
 
@@ -47,8 +56,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html"><img src="_static/logo.png">
-          有米广告SDK文档</a>
+        <a class="navbar-brand" href="index.html">有米广告SDK文档</a>
         <span class="navbar-text navbar-version pull-left"><b>v4.08</b></span>
       </div>
 
@@ -105,7 +113,7 @@
             
             
             
-              <li class="hidden-sm"></li>
+              <li></li>
             
           </ul>
 
@@ -138,56 +146,53 @@
 <div class="section" id="id2">
 <h3>2.权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将下面权限配置代码复制到 AndroidManifest.xml 文件中 :</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
-&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.GET_TASKS&quot;/&gt;
+<div class="highlight-python"><pre>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.READ_PHONE_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/&gt;
+&lt;uses-permission android:name="android.permission.GET_TASKS"/&gt;
 &lt;!--以下为可选权限--&gt;
-&lt;uses-permission android:name=&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;/&gt;
-</pre></div>
+&lt;uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/&gt;</pre>
 </div>
 </div>
 <div class="section" id="id3">
 <h3>3.广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><strong>请将以下配置代码复制到 AndroidManifest.xml 文件中:</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;activity
-        android:name=&quot;net.youmi.android.Ym_Class_AdBrowser&quot;
-        android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenSize&quot;
-        android:theme=&quot;@android:style/Theme.Light.NoTitleBar&quot; &gt;
+<div class="highlight-python"><pre>&lt;activity
+        android:name="net.youmi.android.Ym_Class_AdBrowser"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:theme="@android:style/Theme.Light.NoTitleBar" &gt;
 &lt;/activity&gt;
 &lt;service
-        android:name=&quot;net.youmi.android.Ym_Class_AdService&quot;
-        android:exported=&quot;false&quot; &gt;
+        android:name="net.youmi.android.Ym_Class_AdService"
+        android:exported="false" &gt;
 &lt;/service&gt;
 &lt;service
-        android:name=&quot;net.youmi.android.Ym_Class_ExpService&quot;
-        android:exported=&quot;false&quot; &gt;
+        android:name="net.youmi.android.Ym_Class_ExpService"
+        android:exported="false" &gt;
 &lt;/service&gt;
 &lt;receiver
-        android:name=&quot;net.youmi.android.Ym_Class_AdReceiver&quot; &gt;
+        android:name="net.youmi.android.Ym_Class_AdReceiver" &gt;
         &lt;intent-filter&gt;
-                &lt;action android:name=&quot;android.intent.action.PACKAGE_ADDED&quot; /&gt;
-                &lt;data android:scheme=&quot;package&quot; /&gt;
+                &lt;action android:name="android.intent.action.PACKAGE_ADDED" /&gt;
+                &lt;data android:scheme="package" /&gt;
         &lt;/intent-filter&gt;
 &lt;/receiver&gt;
 &lt;receiver
-        android:name=&quot;net.youmi.android.offers.Ym_Class_OffersReceiver&quot;
-        android:exported=&quot;false&quot; &gt;
-&lt;/receiver&gt;
-</pre></div>
+        android:name="net.youmi.android.offers.Ym_Class_OffersReceiver"
+        android:exported="false" &gt;
+&lt;/receiver&gt;</pre>
 </div>
 </div>
 <div class="section" id="id4">
 <h3>4.混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>如果您的项目使用了Proguard混淆打包，为了避免SDK被二次混淆导致无法正常获取广告，请务必在proguard-project.txt中添加以下代码:</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>-dontwarn net.youmi.android.**
+<div class="highlight-python"><pre>-dontwarn net.youmi.android.**
     -keep class net.youmi.android.** {
     *;
-    }
-</pre></div>
+    }</pre>
 </div>
 </div>
 </div>
@@ -196,42 +201,34 @@
 <div class="section" id="id6">
 <h3>1.初始化<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码:</p>
-<div class="highlight-python"><div class="highlight"><pre>net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init(&quot;AppId&quot;,&quot;AppSecret&quot;, false);
-net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppLaunch();
-</pre></div>
+<div class="highlight-python"><pre>net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId","AppSecret", false);
+net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppLaunch();</pre>
 </div>
 <p>其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-<a class="reference external" href="http://www.youmi.net/apps/view">应用详细信息</a>  可以获得；
 最后的boolean值为是否开启测试模式，true为是，false为否。</p>
-<p>然后在应用退出的地方（如：OnDestroy方法）中调用下面方法以释放资源:</p>
-<div class="highlight-python"><div class="highlight"><pre>net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppExit();
-</pre></div>
-</div>
 </div>
 <div class="section" id="id8">
 <h3>2.积分管理接口<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id9">
 <h4>2.1 查询积分余额<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p>调用以下接口，查询用户的积分账户余额:</p>
-<div class="highlight-python"><div class="highlight"><pre>int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
-</pre></div>
+<div class="highlight-python"><pre>int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();</pre>
 </div>
 <p>注意，该接口直接返回int型的积分余额。</p>
 </div>
 <div class="section" id="id10">
 <h4>2.2 扣除积分<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>调用以下接口，扣除用户积分账户余额:</p>
-<div class="highlight-python"><div class="highlight"><pre>int amount=100;//示例扣除100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
-</pre></div>
+<div class="highlight-python"><pre>int amount=100;//示例扣除100积分。
+bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);</pre>
 </div>
 <p>注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。</p>
 </div>
 <div class="section" id="id11">
 <h4>2.3 增加积分<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>调用以下接口，往用户积分账户余额增加积分:</p>
-<div class="highlight-python"><div class="highlight"><pre>int amount=100;//示例增加100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
-</pre></div>
+<div class="highlight-python"><pre>int amount=100;//示例增加100积分。
+bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);</pre>
 </div>
 <p>注意，该接口直接返回增加积分结果，成功返回true，否则返回false。</p>
 </div>
@@ -274,7 +271,7 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(thi
     </p>
     <p>
         &copy; Copyright 2014, Youmi.<br/>
-      Last updated on 2014-03-14.<br/>
+      Last updated on 2014-03-20.<br/>
     </p>
   </div>
 </footer>
