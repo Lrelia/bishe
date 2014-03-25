@@ -155,6 +155,13 @@ Ym_Class_EarnPointsOrderInfo: ::
 
 3.通过服务器获取积分订单
 ------------------------
+
+注意，务必在调用积分墙的任意接口之前调用以下接口设置用户的标识，该标识最终通过订单回调到您的服务器:  ::
+
+    net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_setCustomUserId("your_userid")
+
+
+
 用户完成了一次积分任务并在有米服务器成功结算后，也可以通过服务器通讯的方式，由有米服务器向您的服务器回调用户完成的订单，详情请查看 `有米Android积分墙积分订单服务器回调协议 <http://wiki.youmi.net/Youmi_android_offers_order_callback_protocol>`_ 。
 
 **注意:如果使用了服务器订单回调，则上文所述的"通过SDK获取积分订单"将不可用，即SDK将不会通知应用订单到账，同时SDK原有的积分管理功能也将被禁用，所有积分流程只能通过服务器实现，可以极大地提高积分安全性。**
