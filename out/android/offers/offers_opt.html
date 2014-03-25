@@ -253,6 +253,10 @@ public final class Ym_Class_EarnPointsOrderInfo {
 </div>
 <div class="section" id="id3">
 <h2>3.通过服务器获取积分订单<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>注意，务必在调用积分墙的任意接口之前调用以下接口设置用户的标识，该标识最终通过订单回调到您的服务器:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">youmi</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">Ym_Class_OffersManager</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">ym_method_setCustomUserId</span><span class="p">(</span><span class="s">&quot;your_userid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>用户完成了一次积分任务并在有米服务器成功结算后，也可以通过服务器通讯的方式，由有米服务器向您的服务器回调用户完成的订单，详情请查看 <a class="reference external" href="http://wiki.youmi.net/Youmi_android_offers_order_callback_protocol">有米Android积分墙积分订单服务器回调协议</a> 。</p>
 <p><strong>注意:如果使用了服务器订单回调，则上文所述的&#8221;通过SDK获取积分订单&#8221;将不可用，即SDK将不会通知应用订单到账，同时SDK原有的积分管理功能也将被禁用，所有积分流程只能通过服务器实现，可以极大地提高积分安全性。</strong></p>
 </div>
@@ -290,7 +294,7 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(con
     </p>
     <p>
         &copy; Copyright 2014, Youmi.<br/>
-      Last updated on 2014-03-20.<br/>
+      Last updated on 2014-03-25.<br/>
     </p>
   </div>
 </footer>
