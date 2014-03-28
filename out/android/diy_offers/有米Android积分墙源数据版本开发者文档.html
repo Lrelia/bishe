@@ -1,12 +1,3 @@
-
-  
-  
- 
-  
-  
- 
-
-
 <!DOCTYPE html>
 
 
@@ -14,18 +5,19 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>有米Android积分墙源数据版本开发者文档 &mdash; YoumiAndroidSdkDocumentation 4.06 documentation</title>
+    <title>有米 Android 积分墙源数据版本开发者文档 &mdash; YoumiAndroidSdkDocumentation 4.08 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/youmi.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.06',
+        VERSION:     '4.08',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -34,11 +26,11 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="YoumiAndroidSdkDocumentation 4.06 documentation" href="index.html" />
+    <link rel="top" title="YoumiAndroidSdkDocumentation 4.08 documentation" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -56,7 +48,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">有米广告SDK文档</a>
+        <a class="navbar-brand" href="index.html"><img src="_static/logo.png">
+          有米广告 SDK 文档</a>
         <span class="navbar-text navbar-version pull-left"><b>v4.08</b></span>
       </div>
 
@@ -66,29 +59,40 @@
             
             
               <li class="dropdown globaltoc-container">
-  <a href="index.html"
-     class="dropdown-toggle"
-     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
-    ></ul>
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
                 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">有米Android积分墙源数据版本开发者文档</a><ul>
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">有米 Android 积分墙源数据版本开发者文档</a><ul>
 <li><a class="reference internal" href="#id1">一、基本配置（重要）</a><ul>
-<li><a class="reference internal" href="#sdk">1.导入SDK</a></li>
-<li><a class="reference internal" href="#id2">2 权限配置</a></li>
-<li><a class="reference internal" href="#id3">3 广告组件配置</a></li>
-<li><a class="reference internal" href="#id4">4 混淆配置</a></li>
+<li><a class="reference internal" href="#sdk">1、导入 SDK</a></li>
+<li><a class="reference internal" href="#id2">2、权限配置</a></li>
+<li><a class="reference internal" href="#id3">3、广告组件配置</a></li>
+<li><a class="reference internal" href="#id4">4、混淆配置</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id5">二、初始化及相关工作（重要）</a></li>
 <li><a class="reference internal" href="#id7">三、获取广告列表（重要）</a><ul>
-<li><a class="reference internal" href="#id8">3.1 数据模型</a></li>
+<li><a class="reference internal" href="#id8">3.1 数据模型</a><ul>
 <li><a class="reference internal" href="#id9">3.1.1 单个广告摘要信息的数据模型</a></li>
 <li><a class="reference internal" href="#id10">3.1.2 广告列表数据模型</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#id11">3.2 获取方式</a></li>
 </ul>
 </li>
@@ -104,13 +108,14 @@
 <li><a class="reference internal" href="#id19">6.3 增加积分</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id21">七、监听应用的下载和安装（可选）</a></li>
-<li><a class="reference internal" href="#id22">八、其他功能（可选）</a><ul>
-<li><a class="reference internal" href="#id23">8.1 设置请求广告的数量</a></li>
-<li><a class="reference internal" href="#id24">8.2 签到功能</a></li>
+<li><a class="reference internal" href="#id20">七、监听应用的下载和安装（可选）</a></li>
+<li><a class="reference internal" href="#id21">八、其他功能（可选）</a><ul>
+<li><a class="reference internal" href="#id22">8.1 设置请求广告的数量</a></li>
+<li><a class="reference internal" href="#id23">8.2 签到功能</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id25">九、SDK实用工具（可选）</a></li>
+<li><a class="reference internal" href="#id24">九、积分墙高级功能（可选）</a></li>
+<li><a class="reference internal" href="#id26">十、SDK 实用工具（可选）</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +131,7 @@
             
             
             
-              <li></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -149,447 +154,521 @@
     <div class="col-md-12">
       
   <div class="section" id="android">
-<h1>有米Android积分墙源数据版本开发者文档<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h1>
+<h1>有米 Android 积分墙源数据版本开发者文档<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>一、基本配置（重要）<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="sdk">
-<h3>1.导入SDK<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h3>
-<p>将sdk解压后的 <strong>libs</strong> 目录下的jar文件导入到工程指定的libs目录。</p>
+<h3>1、导入 SDK<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h3>
+<p>将 sdk 解压后的 <strong>libs</strong> 目录下的 jar 文件导入到工程指定的 libs 目录。</p>
 </div>
 <div class="section" id="id2">
-<h3>2 权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p><strong>请将下面权限配置代码复制到 AndroidManifest.xml 文件中 :</strong>:</p>
-<div class="highlight-python"><pre>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
-&lt;uses-permission android:name="android.permission.READ_PHONE_STATE"/&gt;
-&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
-&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
-&lt;uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/&gt;
-&lt;uses-permission android:name="android.permission.GET_TASKS"/&gt;
-
-&lt;!--以下为可选权限--&gt;
-&lt;uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/&gt;</pre>
+<h3>2、权限配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>请将下面权限配置代码复制到 <tt class="docutils literal"><span class="pre">AndroidManifest.xml</span></tt> 文件中：</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.READ_PHONE_STATE&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.GET_TASKS&quot;</span> <span class="nt">/&gt;</span>
+<span class="c">&lt;!-- 以下为可选权限 --&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="id3">
-<h3>3 广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p><strong>请将以下配置代码复制到 AndroidManifest.xml 文件中:</strong>:</p>
-<div class="highlight-python"><pre>&lt;service
-        android:name="net.youmi.android.Ym_Class_AdService"
-        android:exported="false" &gt;
-&lt;/service&gt;
-&lt;service
-        android:name="net.youmi.android.Ym_Class_ExpService"
-        android:exported="false" &gt;
-&lt;/service&gt;
-&lt;receiver
-        android:name="net.youmi.android.Ym_Class_AdReceiver" &gt;
-        &lt;intent-filter&gt;
-                &lt;action android:name="android.intent.action.PACKAGE_ADDED" /&gt;
-                &lt;data android:scheme="package" /&gt;
-        &lt;/intent-filter&gt;
-&lt;/receiver&gt;
-&lt;receiver
-        android:name="net.youmi.android.offers.Ym_Class_OffersReceiver"
-        android:exported="false" &gt;
-&lt;/receiver&gt;</pre>
+<h3>3、广告组件配置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>请将以下配置代码复制到 <tt class="docutils literal"><span class="pre">AndroidManifest.xml</span></tt> 文件中：</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;service</span>
+    <span class="na">android:name=</span><span class="s">&quot;net.youmi.android.Ym_Class_AdService&quot;</span>
+    <span class="na">android:exported=</span><span class="s">&quot;false&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;service</span>
+    <span class="na">android:name=</span><span class="s">&quot;net.youmi.android.Ym_Class_ExpService&quot;</span>
+    <span class="na">android:exported=</span><span class="s">&quot;false&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;receiver</span>
+    <span class="na">android:name=</span><span class="s">&quot;net.youmi.android.Ym_Class_AdReceiver&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.action.PACKAGE_ADDED&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">android:scheme=</span><span class="s">&quot;package&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+<span class="nt">&lt;receiver</span>
+    <span class="na">android:name=</span><span class="s">&quot;net.youmi.android.offers.Ym_Class_OffersReceiver&quot;</span>
+    <span class="na">android:exported=</span><span class="s">&quot;false&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="id4">
-<h3>4 混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p><strong>如果您的项目使用了Proguard混淆打包，为了避免SDK被二次混淆导致无法正常获取广告，请务必在proguard-project.txt中添加以下代码:</strong>:</p>
-<div class="highlight-python"><pre>-dontwarn net.youmi.android.**
-    -keep class net.youmi.android.** {
-    *;
-    }</pre>
+<h3>4、混淆配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>如果您的项目使用了 Proguard 混淆打包，为了避免 SDK 被二次混淆导致无法正常获取广告，请务必在 <tt class="docutils literal"><span class="pre">proguard-project.txt</span></tt> 中添加以下代码：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="o">-</span><span class="n">dontwarn</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.**</span>
+<span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="o">*;</span>
+<span class="o">}</span>
+</pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="id5">
 <h2>二、初始化及相关工作（重要）<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>请务必在应用第一个Activity(启动的第一个类)的onCreate中调用以下代码:</p>
-<div class="highlight-python"><pre>    net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId","AppSecret", false);
-net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch();</pre>
+<hr class="docutils" />
+<p>请务必在应用第一个 Activity（启动的第一个类）的 onCreate 中调用以下代码：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">Ym_Class_AdManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">init</span><span class="o">(</span><span class="s">&quot;AppId&quot;</span><span class="o">,</span> <span class="s">&quot;AppSecret&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+<span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">diyoffer</span><span class="o">.</span><span class="na">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_onAppLaunch</span><span class="o">();</span>
+</pre></div>
 </div>
-<p>其中，AppId和AppSecret分别为应用的发布ID和密钥，这两个值通过有米后台自动生成，通过在有米后台-<a class="reference external" href="http://www.youmi.net/apps/view">应用详细信息</a>  可以获得；
-最后的boolean值为是否开启测试模式，true为是，false为否。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<ul class="last simple">
+<li>AppId 和 AppSecret 分别为应用的发布 ID 和密钥，这两个值通过有米后台自动生成，通过在有米后台 &gt; <a class="reference external" href="http://www.youmi.net/apps/view">应用详细信息</a>  可以获得；</li>
+<li>最后的 boolean 值为是否开启测试模式，true 为是，false 为否。</li>
+</ul>
+</div>
 </div>
 <div class="section" id="id7">
 <h2>三、获取广告列表（重要）<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="id8">
 <h3>3.1 数据模型<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="id9">
-<h3>3.1.1 单个广告摘要信息的数据模型<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>Ym_Class_AppSummaryObject中集成了一条广告的摘要信息，通过使用Ym_Class_AppSummaryObject，您可以获取广告的摘要信息，然后以列表形式展示出来:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject;
-...
+<h4>3.1.1 单个广告摘要信息的数据模型<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>Ym_Class_AppSummaryObject 中集成了一条广告的摘要信息，通过使用 Ym_Class_AppSummaryObject，您可以获取广告的摘要信息，然后以列表形式展示出来：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject</span><span class="o">;</span>
+<span class="o">...</span>
 
-Ym_Class_AppSummaryObject appSummaryObject;
-int id=appSummaryObject.ym_method_getAdId();            // 获取广告id
-String adName = appSummaryObject.ym_method_getAppName();        // 获取app的名称
-String pn = appSummaryObject.ym_method_getPackageName();        // 获取app的包名
-int versionCode =appSummaryObject.ym_method_getVersionCode();   // 获取app的版本号
-String adIconUrl = appSummaryObject.ym_method_getIconUrl();     // 获取app的广告图标地址
-String adtext = appSummaryObject.ym_method_getAdSlogan();       // 获取广告标语
-String adSize = appSummaryObject.ym_method_getAppSize();        // 获取app的大小
-int points = appSummaryObject.ym_method_getPoints();    // 获取广告的积分（已完成状态下的广告积分返回值为0）
-String pointsUnit =appSummaryObject.ym_method_getPointsUnit();  // 获取广告的积分单位
-int actionType=appSummaryObject.getActionType();        // 获取广告的类型
-int adStatus = appSummaryObject.ym_method_getAdTaskStatus();    // 获取广告的完成状态
-int dlStatus = appSummaryObject.ym_method_getAdDownloadStatus();        // 获取广告的下载状态
-String steps =appSummaryObject.ym_method_getTaskSteps();        // 任务步骤流程指引</pre>
+<span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">id</span>            <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAdId</span><span class="o">();</span>         <span class="c1">// 获取广告 id</span>
+<span class="n">String</span> <span class="n">adName</span>     <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAppName</span><span class="o">();</span>      <span class="c1">// 获取 app 的名称</span>
+<span class="n">String</span> <span class="n">pn</span>         <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getPackageName</span><span class="o">();</span>  <span class="c1">// 获取 app 的包名</span>
+<span class="kt">int</span> <span class="n">versionCode</span>   <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getVersionCode</span><span class="o">();</span>  <span class="c1">// 获取 app 的版本号</span>
+<span class="n">String</span> <span class="n">adIconUrl</span>  <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getIconUrl</span><span class="o">();</span>      <span class="c1">// 获取 app 的广告图标地址</span>
+<span class="n">String</span> <span class="n">adtext</span>     <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAdSlogan</span><span class="o">();</span>     <span class="c1">// 获取广告标语</span>
+<span class="n">String</span> <span class="n">adSize</span>     <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAppSize</span><span class="o">();</span>      <span class="c1">// 获取 app 的大小</span>
+<span class="kt">int</span> <span class="n">points</span>        <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getPoints</span><span class="o">();</span>       <span class="c1">// 获取广告的积分（已完成状态下的广告积分返回值为0）</span>
+<span class="n">String</span> <span class="n">pointsUnit</span> <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getPointsUnit</span><span class="o">();</span>   <span class="c1">// 获取广告的积分单位</span>
+<span class="kt">int</span> <span class="n">actionType</span>    <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">getActionType</span><span class="o">();</span>             <span class="c1">// 获取广告的类型</span>
+<span class="kt">int</span> <span class="n">adStatus</span>      <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAdTaskStatus</span><span class="o">();</span> <span class="c1">// 获取广告的完成状态</span>
+<span class="kt">int</span> <span class="n">dlStatus</span>      <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getAdDownloadStatus</span><span class="o">();</span>  <span class="c1">// 获取广告的下载状态</span>
+<span class="n">String</span> <span class="n">steps</span>      <span class="o">=</span>  <span class="n">appSummaryObject</span><span class="o">.</span><span class="na">ym_method_getTaskSteps</span><span class="o">();</span>    <span class="c1">// 任务步骤流程指引</span>
+</pre></div>
 </div>
-<p>注：</p>
-<p>1、广告的完成状态有2种，对应的值分别为：</p>
-<blockquote>
-<div><p>&lt;已完成&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdTaskStatus.ALREADY_COMPLETE;</p>
-<p>&lt;未完成&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdTaskStatus.NOT_COMPLETE;</p>
-</div></blockquote>
-<p><em>其中：只有&lt;未完成&gt;状态下的广告才可以获取积分；&lt;已完成&gt;状态下的广告是不能获取积分的，同时，&lt;已完成&gt;状态下方法Ym_Class_AppSummaryObject.ym_method_getPoints()的返回值也为0</em></p>
-<p>2、广告的下载状态有3种，对应的值分别为：</p>
-<blockquote>
-<div><p>&lt;未下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.NOT_DOWNLOAD;</p>
-<p>&lt;正在下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.DOWNLOADING;</p>
-<p>&lt;已经下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.ALERADY_DOWNLOAN;</p>
-</div></blockquote>
-<p>3、广告的类型有2种，对应的值分别为：</p>
-<blockquote>
-<div><p>&lt;体验类型&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdType.EXPERIENCE;</p>
-<p>&lt;注册类型&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdType.REGISTER;</p>
-</div></blockquote>
+<p><strong>注：</strong></p>
+<ol class="arabic simple">
+<li>广告的完成状态有2种，对应的值分别为：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre>&lt;已完成&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdTaskStatus.ALREADY_COMPLETE;
+&lt;未完成&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdTaskStatus.NOT_COMPLETE;
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">其中只有 &lt;未完成&gt; 状态下的广告才可以获取积分；&lt;已完成&gt; 状态下的广告是不能获取积分的，同时，&lt;已完成&gt; 状态下方法 Ym_Class_AppSummaryObject.ym_method_getPoints() 的返回值也为0</p>
+</div>
+<ol class="arabic simple" start="2">
+<li>广告的下载状态有3种，对应的值分别为：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre>&lt;未下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.NOT_DOWNLOAD;
+&lt;正在下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.DOWNLOADING;
+&lt;已经下载&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdDownloadStatus.ALERADY_DOWNLOAN;
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>广告的类型有2种，对应的值分别为：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre>&lt;体验类型&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdType.EXPERIENCE;
+&lt;注册类型&gt;：net.youmi.android.offers.diyoffer.Ym_Class_AdType.REGISTER;
+</pre></div>
+</div>
 </div>
 <div class="section" id="id10">
-<h3>3.1.2 广告列表数据模型<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>Ym_Class_AppSummaryObjectList中包含了每个广告的摘要信息Ym_Class_AppSummaryObject，每次请求广告的时候都会返回这个列表数据模型，我们为这个列表数据模型提供以下几个方法:</p>
-<div class="highlight-python"><pre>public class Ym_Class_AppSummaryObjectList {
-        /**
-         * 添加广告
-         */
-        public boolean add(Ym_Class_AppSummaryObject object);
-        /**
-         * 获取指定索引的广告的摘要信息
-         */
-        public Ym_Class_AppSummaryObject get(int index);
-        /**
-         * 判断广告列表是否为空
-         */
-        public boolean isEmpty();
-        /**
-         * 获取广告列表的长度
-         */
-        public int size();
-        }</pre>
+<h4>3.1.2 广告列表数据模型<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">Ym_Class_AppSummaryObjectList 中包含了每个广告的摘要信息 Ym_Class_AppSummaryObject，每次请求广告的时候都会返回这个列表数据模型，我们为这个列表数据模型提供以下几个方法：</div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ym_Class_AppSummaryObjectList</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     *  添加广告</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">object</span><span class="o">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  获取指定索引的广告的摘要信息</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Ym_Class_AppSummaryObject</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  判断广告列表是否为空</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">();</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  获取广告列表的长度</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="id11">
 <h3>3.2 获取方式<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p><strong>获取积分墙列表数据有两种方式，一种为同步加载，一种为异步加载</strong></p>
-<p>1、同步加载方式(请注意在非UI线程中使用):</p>
-<div class="highlight-python"><pre>/**
- * 获取积分墙列表数据
- * @param requestType           请求类型
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:      所有（默认值）
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME:     只请求游戏广告
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP:      只请求应用广告
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT:     请求列表特殊排序，应用先于游戏显示
- * @param withAdDownloadUrl      广告是否携带url下载地址（可用于实现广告列表页实现下载功能）
- *      false:  不携带（默认值）
- *      true:   携带
- * @return
- *      Ym_Class_AppSummaryObjectList           广告摘要信息列表
- */
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getOfferWallAdList(int requestType, boolean withAdDownloadUrl);</pre>
+<p>获取积分墙列表数据有两种方式，一种为 <strong>同步加载</strong> ，一种为 <strong>异步加载</strong> 。</p>
+<ol class="arabic simple">
+<li>同步加载方式（请注意在非 UI 线程中使用）：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> *  获取积分墙列表数据</span>
+<span class="cm"> *  @param  requestType    请求类型</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL          : 所有（默认值）</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME         : 只请求游戏广告</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP          : 只请求应用广告</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT : 请求列表特殊排序，应用先于游戏显示</span>
+<span class="cm"> *  @param  withAdDownloadUrl    广告是否携带url下载地址（可用于实现广告列表页实现下载功能）</span>
+<span class="cm"> *      false:  不携带（默认值）</span>
+<span class="cm"> *      true:   携带</span>
+<span class="cm"> *  @return  Ym_Class_AppSummaryObjectList   广告摘要信息列表</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_getOfferWallAdList</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestType</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">withAdDownloadUrl</span><span class="o">);</span>
+</pre></div>
 </div>
-<p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList;
-import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-...
+<p><em>示例代码</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
 
-// 请求广告类型不限，广告附带url下载地址
-new Thread(new Runnable() {
-         @Override
-         public void run() {
-                 Ym_Class_AppSummaryObjectList data =
-                                 Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, true);
-         }
-}).start();</pre>
+<span class="c1">// 请求广告类型不限，广告附带 url 下载地址</span>
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+     <span class="nd">@Override</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+         <span class="n">Ym_Class_AppSummaryObjectList</span> <span class="n">data</span> <span class="o">=</span>
+             <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_getOfferWallAdList</span><span class="o">(</span><span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">ym_param_REQUEST_ALL</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+     <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
 </div>
-<p>2、异步加载方式:</p>
-<div class="highlight-python"><pre>/**
- * 异步加载积分墙数据列表
- * @param requestType   请求类型
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL:      所有（默认值）
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME:     只请求游戏广告
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP:      只请求应用广告
- *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT:     请求列表特殊排序，应用先于游戏显示
- * @param withAdDownloadUrl      广告是否携带url下载地址（可用于实现广告列表页实现下载功能）
- *      false:  不携带（默认值）
- *      true:   携带
- */
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_loadOfferWallAdList(int requestType, boolean withAdDownloadUrl,
-                Ym_Class_AppSummaryDataInterface appSummaryDataInterface);</pre>
+<ol class="arabic simple" start="2">
+<li>异步加载方式：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> *  异步加载积分墙数据列表</span>
+<span class="cm"> *  @param  requestType    请求类型</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL          : 所有（默认值）</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_GAME         : 只请求游戏广告</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_APP          : 只请求应用广告</span>
+<span class="cm"> *      Ym_Class_DiyOfferWallManager.ym_param_REQUEST_SPECIAL_SORT : 请求列表特殊排序，应用先于游戏显示</span>
+<span class="cm"> *  @param  withAdDownloadUrl    广告是否携带url下载地址（可用于实现广告列表页实现下载功能）</span>
+<span class="cm"> *      false:  不携带（默认值）</span>
+<span class="cm"> *      true:   携带</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_loadOfferWallAdList</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestType</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">withAdDownloadUrl</span><span class="o">,</span>
+    <span class="n">Ym_Class_AppSummaryDataInterface</span> <span class="n">appSummaryDataInterface</span><span class="o">);</span>
+</pre></div>
 </div>
-<p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryDataInterface;
-import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject;
-import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList;
-import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-...
+<p><em>示例代码</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryDataInterface</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
 
-/**
- * 请求第一页广告，广告类型不限，广告不附带下载地址
- */
+<span class="cm">/**</span>
+<span class="cm"> *  请求第一页广告，广告类型不限，广告不附带下载地址</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_loadOfferWallAdList</span><span class="o">(</span><span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">ym_param_REQUEST_ALL</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span>
+    <span class="k">new</span> <span class="nf">Ym_Class_AppSummaryDataInterface</span><span class="o">()</span> <span class="o">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         *  当成功获取积分墙列表数据的时候会回调这个方法</span>
+<span class="cm">         *  注意：本回调方法不在 UI 线程中执行，所以请不要在本接口中进行UI线程方面的操作</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_onLoadAppSumDataSuccess</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Ym_Class_AppSummaryObjectList</span> <span class="n">adList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// TODO Auto-generated method stub</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">adList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="n">adList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
 
- Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadOfferWallAdList(Ym_Class_DiyOfferWallManager.ym_param_REQUEST_ALL, false,
-                new Ym_Class_AppSummaryDataInterface() {
-
-                        /**
-                         * 当成功获取积分墙列表数据的时候会回调这个方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
-                         */
-                        @Override
-                        public void ym_method_onLoadAppSumDataSuccess(Context context, Ym_Class_AppSummaryObjectList adList) {
-                                // TODO Auto-generated method stub
-                                for(int i=0; i&lt;adList.size(); ++i){
-                                        Log.d("test",adList.get(i).toString());
-                                }
-                        }
-
-                        /**
-                         * 当获取积分墙数据失败的时候会回调这个方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
-                         */
-                        @Override
-                        public void ym_method_onLoadAppSumDataFailed() {
-                                // TODO Auto-generated method stub
-                                Log.d("test","没有获取到数据");
-                        }
-                }
-        );</pre>
+        <span class="cm">/**</span>
+<span class="cm">         *  当获取积分墙数据失败的时候会回调这个方法</span>
+<span class="cm">         *  注意：本回调方法不在 UI 线程中执行，所以请不要在本接口中进行 UI 线程方面的操作）</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_onLoadAppSumDataFailed</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// TODO Auto-generated method stub</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="s">&quot;没有获取到数据&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">);</span>
+</pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="id12">
 <h2>四、获取广告的详细数据（重要）<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="id13">
 <h3>4.1 数据模型<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<p>Ym_Class_AppDetailObject中集成了一条广告的详细信息，通过Ym_Class_AppDetailObject，您可以获取广告的详细信息，然后展示广告的详情页:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
-...
+<p>Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Class_AppDetailObject，您可以获取广告的详细信息，然后展示广告的详情页</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject</span><span class="o">;</span>
+<span class="o">...</span>
 
-Ym_Class_AppDetailObject appDetailObject;
-int id=appDetailObject.ym_method_getAdId();     // 获取广告id
-String adName = appDetailObject.ym_method_getAppName(); // 获取app的名称
-String pn = appDetailObject.ym_method_getPackageName(); // 获取app的包名
-int versionCode = appDetailObject.ym_method_getVersionCode();   // 获取app的版本号
-String versionName = appDetailObject.ym_method_getVersionName();        // 获取app的版本名
-String adIconUrl = appDetailObject.ym_method_getIconUrl();      // 获取app的图标地址
-String [] ssUrls = appDetailObject.ym_method_getScreenShotUrls();       // 获取app的截图地址列表
-String adSlogan = appDetailObject.ym_method_getAdSlogan();      // 获取广告标语
-String desc = appDetailObject.ym_method_getDescription();       // 获取广告的详细描述
-String size = appDetailObject.ym_method_getAppSize();   // 获取app的大小
-int points = appDetailObject.ym_method_getPoints();     // 获取app的积分
-String pointsUnit =appDetailObject.ym_method_getPointsUnit();   // 获取广告的积分单位
-String appCat = appDetailObject.ym_method_getAppCategory();     // 获取应用类型
-int actionType=appDetailObject.getActionType(); // 获取广告类型
-int adStatus = appDetailObject.ym_method_getAdTaskStatus();     // 获取广告的完成状态
-int dlStatus = appDetailObject.ym_method_getAdDownloadStatus(); // 获取广告的下载状态
-String author = appDetailObject.ym_method_getAuthor();  // 获取该app的作者名
-String steps = appDetailObject.ym_method_getTaskSteps();        // 任务步骤流程指引</pre>
+<span class="n">Ym_Class_AppDetailObject</span> <span class="n">appDetailObject</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">id</span>              <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAdId</span><span class="o">();</span>           <span class="c1">// 获取广告 id</span>
+<span class="n">String</span> <span class="n">adName</span>       <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAppName</span><span class="o">();</span>        <span class="c1">// 获取 app 的名称</span>
+<span class="n">String</span> <span class="n">pn</span>           <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getPackageName</span><span class="o">();</span>    <span class="c1">// 获取 app 的包名</span>
+<span class="kt">int</span> <span class="n">versionCode</span>     <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getVersionCode</span><span class="o">();</span>    <span class="c1">// 获取 app 的版本号</span>
+<span class="n">String</span> <span class="n">versionName</span>  <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getVersionName</span><span class="o">();</span>    <span class="c1">// 获取 app 的版本名</span>
+<span class="n">String</span> <span class="n">adIconUrl</span>    <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getIconUrl</span><span class="o">();</span>        <span class="c1">// 获取 app 的图标地址</span>
+<span class="n">String</span> <span class="o">[]</span> <span class="n">ssUrls</span>    <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getScreenShotUrls</span><span class="o">();</span> <span class="c1">// 获取 app 的截图地址列表</span>
+<span class="n">String</span> <span class="n">adSlogan</span>     <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAdSlogan</span><span class="o">();</span>       <span class="c1">// 获取广告标语</span>
+<span class="n">String</span> <span class="n">desc</span>         <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getDescription</span><span class="o">();</span>    <span class="c1">// 获取广告的详细描述</span>
+<span class="n">String</span> <span class="n">size</span>         <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAppSize</span><span class="o">();</span>        <span class="c1">// 获取 app 的大小</span>
+<span class="kt">int</span> <span class="n">points</span>          <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getPoints</span><span class="o">();</span>         <span class="c1">// 获取 app 的积分</span>
+<span class="n">String</span> <span class="n">pointsUnit</span>   <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getPointsUnit</span><span class="o">();</span>     <span class="c1">// 获取广告的积分单位</span>
+<span class="n">String</span> <span class="n">appCat</span>       <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAppCategory</span><span class="o">();</span>    <span class="c1">// 获取应用类型</span>
+<span class="kt">int</span> <span class="n">actionType</span>      <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">getActionType</span><span class="o">();</span>               <span class="c1">// 获取广告类型</span>
+<span class="kt">int</span> <span class="n">adStatus</span>        <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAdTaskStatus</span><span class="o">();</span>   <span class="c1">// 获取广告的完成状态</span>
+<span class="kt">int</span> <span class="n">dlStatus</span>        <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAdDownloadStatus</span><span class="o">();</span> <span class="c1">// 获取广告的下载状态</span>
+<span class="n">String</span> <span class="n">author</span>       <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getAuthor</span><span class="o">();</span>         <span class="c1">// 获取该 app 的作者名</span>
+<span class="n">String</span> <span class="n">steps</span>        <span class="o">=</span>  <span class="n">appDetailObject</span><span class="o">.</span><span class="na">ym_method_getTaskSteps</span><span class="o">();</span>      <span class="c1">// 任务步骤流程指引</span>
+</pre></div>
 </div>
-<p>注：</p>
-<p>1、广告的完成状态、下载状态以及广告的类型值请参考上述第三点：获取广告列表中的描述</p>
+<p><strong>注：</strong></p>
+<p>广告的完成状态、下载状态以及广告的类型值请参考上述第三点：获取广告列表中的描述</p>
 </div>
 <div class="section" id="id14">
 <h3>4.2 获取方式<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<p><strong>获取积分墙某个广告的详细数据有两种方式，一种为同步加载，一种为异步加载</strong></p>
-<p>1、同步加载方式(请注意在非UI线程中使用):</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
-import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-...
+<p>获取积分墙某个广告的详细数据有两种方式，一种为 <strong>同步加载</strong> ，一种为 <strong>异步加载</strong> 。</p>
+<ol class="arabic simple">
+<li>同步加载方式（请注意在非 UI 线程中使用）：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
 
-/**
- * 获取广告的详细信息（请注意不要在UI线程中直接使用）
- * @param Ym_Class_AppSummaryObject
- *              广告的摘要信息对象，广告的摘要信息对象请参考3.1节的描述
- */
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getAppDetailData(Ym_Class_AppSummaryObject appSummaryObject);</pre>
+<span class="cm">/**</span>
+<span class="cm"> *  获取广告的详细信息（请注意不要在 UI 线程中直接使用）</span>
+<span class="cm"> *  @param  Ym_Class_AppSummaryObject 广告的摘要信息对象，广告的摘要信息对象请参考3.1节的描述</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_getAppDetailData</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">);</span>
+</pre></div>
 </div>
-<p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
-import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-...
+<p><em>示例代码</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
 
-new Thread(new Runnable() {
-                @Override
-                public void run() {
-                        // 这里传入广告的摘要信息数据模型对象，以获取广告的详细数据
-                        Ym_Class_AppDetailObject data  = Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_getAppDetailData(appSummaryObject);
-         }
-}).start();</pre>
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 这里传入广告的摘要信息数据模型对象，以获取广告的详细数据</span>
+        <span class="n">Ym_Class_AppDetailObject</span> <span class="n">data</span>  <span class="o">=</span> <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_getAppDetailData</span><span class="o">(</span><span class="n">appSummaryObject</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
 </div>
-<p>2、异步加载方式:</p>
-<div class="highlight-python"><pre>/**
- * 获取广告的详细信息
- * @param appSumObject
- *              要加载的广告的摘要信息对象
- * @param appDetailDataInterface
- *              回调接口，当返回数据结果时回调本接口
- */
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_loadAppDetailData(Ym_Class_AppSummaryObject appSummaryObject,
-                Ym_Class_AppDetailDataInterface appDetailDataInterface);</pre>
+<ol class="arabic simple" start="2">
+<li>异步加载方式：</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> *  获取广告的详细信息</span>
+<span class="cm"> *  @param  appSumObject  要加载的广告的摘要信息对象</span>
+<span class="cm"> *  @param  appDetailDataInterface  回调接口，当返回数据结果时回调本接口</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_loadAppDetailData</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">,</span>
+    <span class="n">Ym_Class_AppDetailDataInterface</span> <span class="n">appDetailDataInterface</span><span class="o">);</span>
+</pre></div>
 </div>
-<p><em>示例代码</em>:</p>
-<div class="highlight-python"><pre>import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject;
-import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject;
-import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
-import net.youmi.android.offers.diyoffer.Ym_Class_AppDetailDataInterface;
-...
-/**
- * 异步加载积分墙某个广告的详细数据
- */
-Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_loadAppDetailData(appSummaryObject,
-                new Ym_Class_AppDetailDataInterface() {
-        /**
-         * 当成功加载到数据的时候，会回调本方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
-         */
-        @Override
-        public void ym_method_onLoadAppDetailDataSuccess(Context context, Ym_Class_AppDetailObject appDetailObject) {
-                Log.d("test",appDetailObject.toString());
-        }
-        /**
-         * 当加载数据失败的时候，会回调本方法（注意:本回调方法不在UI线程中执行，所以请不要在本接口中进行UI线程方面的操作）
-         */
-        @Override
-        public void ym_method_onLoadAppDetailDataFailed() {
-                Log.d("test","没有获取到数据");
-        }
-});</pre>
+<p><em>示例代码</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppDetailObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppDetailDataInterface</span><span class="o">;</span>
+<span class="o">...</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *  异步加载积分墙某个广告的详细数据</span>
+<span class="cm"> */</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_loadAppDetailData</span><span class="o">(</span><span class="n">appSummaryObject</span><span class="o">,</span>
+    <span class="k">new</span> <span class="nf">Ym_Class_AppDetailDataInterface</span><span class="o">()</span> <span class="o">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         *  当成功加载到数据的时候，会回调本方法（注意：本回调方法不在 UI 线程中执行，所以请不要在本接口中进行 UI 线程方面的操作）</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_onLoadAppDetailDataSuccess</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Ym_Class_AppDetailObject</span> <span class="n">appDetailObject</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="n">appDetailObject</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         *  当加载数据失败的时候，会回调本方法（注意：本回调方法不在 UI 线程中执行，所以请不要在本接口中进行 UI 线程方面的操作）</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_onLoadAppDetailDataFailed</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="s">&quot;没有获取到数据&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="id15">
 <h2>五、下载和打开应用（重要）<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
-<p>通过调用下面方法即可下载（或打开）广告，如果该广告的完成状态为&lt;未完成&gt;，则可获取积分结算</p>
-<p><strong>请注意：打开广告务必调用本方法，否则可能无法获取积分和结算</strong>:</p>
-<div class="highlight-python"><pre>// 1、传入Ym_Class_AppSummaryObject对象
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppSummaryObject appSummaryObject);
-// 2、传入Ym_Class_AppDetailObject对象
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppDetailObject appDetailObject);</pre>
+<hr class="docutils" />
+<p>通过调用下面方法即可下载（或打开）广告，如果该广告的完成状态为 &lt;未完成&gt;，则可获取积分结算</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>注意：</strong> 打开广告务必调用本方法，否则可能无法获取积分和结算</p>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 1、传入 Ym_Class_AppSummaryObject 对象</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_openOrDownloadApp</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">);</span>
+
+<span class="c1">// 2、传入 Ym_Class_AppDetailObject 对象</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_openOrDownloadApp</span><span class="o">(</span><span class="n">Ym_Class_AppDetailObject</span> <span class="n">appDetailObject</span><span class="o">);</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="id16">
 <h2>六、积分相关操作功能（重要）<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="id17">
 <h3>6.1 查询积分余额<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
-<p>调用以下接口，查询用户的积分账户余额:</p>
-<div class="highlight-python"><pre>int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();</pre>
+<p>调用以下接口，查询用户的积分账户余额：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">myPointBalance</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_queryPoints</span><span class="o">();</span>
+</pre></div>
 </div>
-<p>注意，该接口直接返回int型的积分余额。</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"><strong>注意：</strong> 该接口直接返回 int 型的积分余额。</p>
+</div>
 </div>
 <div class="section" id="id18">
 <h3>6.2 扣除积分<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>调用以下接口，扣除用户积分账户余额:</p>
-<div class="highlight-python"><pre>int amount=100;//示例扣除100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);</pre>
+<p>调用以下接口，扣除用户积分账户余额：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例扣除100积分。</span>
+<span class="n">bool</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_spendPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+</pre></div>
 </div>
-<p>注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"><strong>注意：</strong> 该接口直接返回扣除积分结果，成功扣除返回 true，否则返回 false。</p>
+</div>
 </div>
 <div class="section" id="id19">
 <h3>6.3 增加积分<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p>调用以下接口，往用户积分账户余额增加积分:</p>
-<div class="highlight-python"><pre>int amount=100;//示例增加100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);</pre>
+<p>调用以下接口，往用户积分账户余额增加积分：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例增加100积分。</span>
+<span class="n">bool</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_awardPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+</pre></div>
 </div>
-<p>注意，该接口直接返回增加积分结果，成功返回true，否则返回false。</p>
-<p>积分墙源数据版本SDK提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 <a class="reference external" href="offers_opt.html">积分墙高级功能</a> 。</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"><strong>注意：</strong> 该接口直接返回增加积分结果，成功返回 true，否则返回 false。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>七、监听应用的下载和安装（可选）<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>app 下载安装监听器适用于当 app 下载安装状态改变时通知 UI 界面进行更新显示，比如下载进度的更新时 UI 界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于 UI 交互。</p>
+<p>通过实现 net.youmi.android.offers.diyoffer.DiyAppNotify 这个接口，并且在界面初始化后向 net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager 的 registerListener 方法注册监听即可让界面随时获得 app 的下载安装状态，在界面销毁时，请务必调用 removeListener 方法注销监听。</p>
+<p>DiyAppNotify 的定义：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> *  app下载安装监听器</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DiyAppNotify</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     *  下载进度变更通知，在 UI 线程中执行。</span>
+<span class="cm">     *  @param  id</span>
+<span class="cm">     *  @param  contentLength</span>
+<span class="cm">     *  @param  completeLength</span>
+<span class="cm">     *  @param  percent</span>
+<span class="cm">     *  @param  speedBytesPerS</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDownloadProgressUpdate</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="kt">long</span> <span class="n">contentLength</span><span class="o">,</span> <span class="kt">long</span> <span class="n">completeLength</span><span class="o">,</span> <span class="kt">int</span> <span class="n">percent</span><span class="o">,</span> <span class="kt">long</span> <span class="n">speedBytesPerS</span><span class="o">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  下载成功通知，在 UI 线程中执行。</span>
+<span class="cm">     *  @param  id</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDownloadSuccess</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  下载失败通知，在 UI 线程中执行。</span>
+<span class="cm">     *  @param  id</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDownloadFailed</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *  安装成功通知，在 UI 线程中执行。</span>
+<span class="cm">     *  @param appObject</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onInstallSuccess</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>如果需要判断两个 app 是否为同一个，则可以通过获取它的广告 id 进行比较即可。</p>
+<p>Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> *  注册监听器</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerListener</span><span class="o">(</span><span class="n">DiyAppNotify</span> <span class="n">listener</span><span class="o">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *  注释监听器</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeListener</span><span class="o">(</span><span class="n">DiyAppNotify</span> <span class="n">listener</span><span class="o">);</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="id21">
-<h2>七、监听应用的下载和安装（可选）<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
-<p>app下载安装监听器适用于当app下载安装状态改变时通知UI界面进行更新显示，比如下载进度的更新时UI界面应该显示进度条，当下载成功时隐藏进度条并提示用户安装等等，这些一般都只适用于UI交互。</p>
-<p>通过实现net.youmi.android.offers.diyoffer.DiyAppNotify这个接口，并且在界面初始化后向net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager的``registerListener方法注册监听即可让界面随时获得app的下载安装状态，在界面销毁时，请务必调用removeListener方法注销监听。</p>
-<p>DiyAppNotify的定义:</p>
-<div class="highlight-python"><pre>/**
- * app下载安装监听器
- *
- */
-public interface DiyAppNotify {
-/**
-  * 下载进度变更通知，在UI线程中执行。
-  * @param id
-  * @param contentLength
-  * @param completeLength
-  * @param percent
-  * @param speedBytesPerS
-  */
-public void onDownloadProgressUpdate(int id,long contentLength, long completeLength, int percent,long speedBytesPerS);
-
-/**
-  * 下载成功通知，在UI线程中执行。
-  * @param id
-  */
-public void onDownloadSuccess(int id);
-
-/**
-  * 下载失败通知，在UI线程中执行。
-  * @param id
-  */
-public void onDownloadFailed(int id);
-
-/**
-  * 安装成功通知，在UI线程中执行。
-  * @param appObject
-  */
-public void onInstallSuccess(int id);
-}</pre>
-</div>
-<p>如果需要判断两个app是否为同一个，则可以通过获取它的广告id进行比较即可。</p>
-<p>Ym_Class_DiyOfferWallManager关于下载安装监听器的调用:</p>
-<div class="highlight-python"><pre>/**
- *注册监听器
- */
-public void registerListener(DiyAppNotify listener);
-
-/**
-  *注释监听器
-  */
-public void removeListener(DiyAppNotify listener);</pre>
-</div>
-</div>
+<h2>八、其他功能（可选）<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="id22">
-<h2>八、其他功能（可选）<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<h3>8.1 设置请求广告的数量<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>通过调用下面方法即可设置请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_setRequestCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id23">
-<h3>8.1 设置请求广告的数量<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<p>通过调用下面方法即可设置请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法:</p>
-<div class="highlight-python"><pre>Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);</pre>
+<h3>8.2 签到功能<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>签到功能提供对 &lt;已完成&gt; 状态的广告进行签到，以提高广告的效果，下面展示简单用法：</p>
+<p>首先通过调用下面方法获取签到列表，<tt class="docutils literal"><span class="pre">请注意在非</span> <span class="pre">UI</span> <span class="pre">线程中调用本方法</span></tt>。</p>
+<p><em>示例</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="n">Ym_Class_AppSummaryObjectList</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_getSignInAdList</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>然后通过调用下面方法可以为签到列表上的广告进行签到：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 1、通过传入 Ym_Class_AppSummaryObject 对象进行签到</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">);</span>
+
+<span class="c1">// 2、通过传入 Ym_Class_AppDetailObject 对象进行签到</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">Ym_Class_AppDetailObject</span> <span class="n">appDetailObject</span><span class="o">);</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="id24">
-<h3>8.2 签到功能<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<p>签到功能提供对&lt;已完成&gt;状态的广告进行签到，以提高广告的效果，下面展示简单用法：</p>
-<p>首先通过调用下面方法获取签到列表，<strong>请注意在非UI线程中调用本方法</strong>。</p>
-<p><em>示例</em>:</p>
-<div class="highlight-python"><pre>new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                        // TODO Auto-generated method stub
-                        Ym_Class_AppSummaryObjectList list = Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_getSignInAdList();
-                }
-
-}).start();</pre>
+<h2>九、积分墙高级功能（可选）<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>积分墙源数据版本 SDK 提供了积分余额变动通知、订单到账通知等高级功能，更多详情请参考 <a class="reference external" href="offers_opt.html">积分墙高级功能</a> 。</p>
 </div>
-<p>然后通过调用下面方法可以为签到列表上的广告进行签到:</p>
-<div class="highlight-python"><pre>// 1、通过传入Ym_Class_AppSummaryObject对象进行签到
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppSummaryObject appSummaryObject);
-// 2、通过传入Ym_Class_AppDetailObject对象进行签到
-Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);</pre>
-</div>
-</div>
-</div>
-<div class="section" id="id25">
-<h2>九、SDK实用工具（可选）<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
-<p>SDK实用功能提供了检查更新和在线配置等功能，可以为您提供便捷的实用工具。<a class="reference external" href="functional.html">更多详情</a></p>
+<div class="section" id="id26">
+<h2>十、SDK 实用工具（可选）<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>SDK 实用功能提供了检查更新和在线配置等功能，可以为您提供便捷的实用工具，更多详情请参考 <a class="reference external" href="functional.html">SDK 使用工具</a></p>
 </div>
 </div>
 
@@ -598,17 +677,16 @@ Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInAc
       
   </div>
 </div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-        &copy; Copyright 2014, Youmi.<br/>
-      Last updated on 2014-03-25.<br/>
-    </p>
-  </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-right"><a href="#">返回顶端</a></p>
+            <p>© Copyright 2014, Youmi.net</p>
+        </div>
+    </footer>
+    <script>
+        $("#dLabelLocalToc").html('导航 <b class="caret"></b>');
+        $(".admonition-title").html('注意：');
+    </script>
+
   </body>
 </html>

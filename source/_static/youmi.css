@@ -1,138 +1,89 @@
-/*=configCSS, 配置自定义的CSS*/
-body {
-    color: #2B2625; 
+/** @preserve Copyright 2010-2014 Youmi.net. All Rights Reserved. */
+/**
+ *  Android SDK Document CSS
+ *  ------------------------
+ */
+/* =layout
+ ---------------------------------------- */
+body { font-family: \5fae\8f6f\96c5\9ed1,helvetica,tahoma,arial,\5b8b\4f53; }
+.footer {
+    margin-top: 48px;
+    color: #999;
 }
 
-footer {
-    text-align: center;
-}
+/* =type
+ ---------------------------------------- */
+h1 { padding-top: 32px; }
+h2 { margin-top: 36px; color: #003366; }
+h3 { margin-top: 32px; }
+h4 { margin-top: 24px; }
 
-img {
-    width: 50%;
-    height: 50%;
-    margin-left: 4em;
-    margin-bottom: 2em;
-}
+a { color: #ff7830; }
+a:hover { color: #ef5b0c; }
 
-form {
-    display: none;
-}
-
-p {
-    margin-left: 2.6em;
-
-}
-
-pre {
-    background: rgb(250,250,250);
-    margin-left: 2.8em;
-    color: rgb(20,125,196);
-    margin-bottom: 1em;
-}
-
-/*=header,标题*/
-h1 {
-    color: #F79417;
-    font-weight: bolder;
-    font-size: 2.2em;
-}
-
-h2 {
-    color: #F79417;
-    margin-top: 1em;
-    font-weight: bold;
-    letter-spacing: 3px;
-    font-size: 1.6em;
-}
-
-h3 {
-    /*color: #F79417;*/
-    margin-top:1em;
-    margin-left: .5em;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-h4 {
-    color: rgb(42,42,36);
-    margin-top: 1em;
-    margin-left: 2em;
-    font-weight: bold;
-}
+/* =components
+ ---------------------------------------- */
+/* =nav */
+.navbar-brand { padding-top: 11px; }
+.navbar-brand img { margin-right: 6px; }
+.navbar-inverse { background: #222; }
 
 
-
-/*=resetCSS*/
-.navbar {
-    background: #F79417;
-    border-bottom: 1px solid rgb(240,240,152);
-}
-
-.container {
-    max-width: 900px;
-}
-
-a.navbar-brand {
-    color: white;
-}
-
-.navbar-inverse .navbar-brand {
+/* =code */
+.highlight pre {
+    padding-right: 16px;
+    padding-left: 16px;
     color: #fff;
+    background-color: #292929;
+    border-color: #1b1d1e;
 }
+.highlight .cm, .highlight .c1, .highlight .c { font-style: normal; color: #455354; }
 
-.navbar-inverse .navbar-text {
-    color: #fff;
+/* java */
+.highlight-java .o, .highlight-java .na,
+.highlight-java .nc, .highlight-java .nf,
+.highlight-java .nn { color: #fff; }
+.highlight-java .k, .highlight-java .kt { color: #66d9ef; }
+.highlight-java .s { color: #e6db74; }
+.highlight-java .kc, .highlight-java .mi { color: #ae81ff; }
+.highlight-java .kd { color: #fd971f; }
+.highlight-java .kn, .highlight-java .nd { color: #a6e22e; }
+
+/* xml */
+.highlight-xml .nt { color: #a6e22e; }
+.highlight-xml .na { color: #66d9ef; }
+.highlight-xml .s { color: #e6db74; }
+
+
+/* notice */
+.alert.admonition {
+    padding-right: 12px;
+    padding-left: 12px;
 }
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #fff;
+.alert.alert-info {
+    background: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
-
-.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
-    text-shadow: 0 0 0 0 #fff;
+.alert.alert-warning {
+    background: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
-
-.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
-    background-color: #D37227;
+.alert.alert-error {
+    background: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
-
-#sourcelink {
-    display: none;
-}
-
-.row {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-
-
-/*=liElements*/
-li p {
-    margin-left: 0;
-}
-
-ol li {
-    margin-left: 4em;
-}
-
-ul li {
-    margin-left: 1em;
-}
-
-ul li pre {
-    margin-left: 0;
-}
-
-ul li img {
-    margin-left: 0;
-}
-
-ol li img {
-    margin-left: 0;
-}
-
-ol li pre {
-    margin-left: 0;
-}
-
+.admonition.tip .first,
+.admonition.caution .first,
+.admonition.danger .first { display: none; }
+.admonition.tip .last,
+.admonition.caution .last,
+.admonition.danger .last { margin-top: 0; }
