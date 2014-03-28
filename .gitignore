@@ -1,1 +1,8 @@
+*.[a|o]
+*~
+*.bak
+*.swp
+*.pyc
+
 build/*
+out/*

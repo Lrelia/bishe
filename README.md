@@ -14,7 +14,7 @@
 
 ### 1)安装python
 
-下载地址： 
+下载地址：
 
 32位windows : http://www.python.org/ftp/python/2.7.6/python-2.7.6.msi
 64位windows : http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
