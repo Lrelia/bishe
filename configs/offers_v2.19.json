@@ -1,9 +1,9 @@
 {
-    "title":"有米Android积分墙网赚类sdk开发者文档",
-    "ver":"v2.19",
-    "from":[
-            "build/html/有米Android积分墙SDKv2.19开发者文档.html",
-            "build/html/_static"
-        ],
-    "into":"out/android/offers_v2.19"
+    "title": "有米Android积分墙网赚类sdk开发者文档",
+    "ver": "v2.19",
+    "from": [
+        "build/html/有米Android积分墙SDKv2.19开发者文档.html",
+        "build/html/_static"
+    ],
+    "into": "out/android/offers_v2.19"
 }
