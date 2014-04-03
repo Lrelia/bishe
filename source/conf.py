@@ -130,8 +130,8 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        (u"积分墙高级功能", "offers_opt"),
-        (u"SDK 使用工具", "functional"),
+        #(u"积分墙高级功能", "offers_opt"),
+        (u"SDK 实用工具", "functional"),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

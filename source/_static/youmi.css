@@ -17,9 +17,13 @@ h1 { padding-top: 32px; }
 h2 { margin-top: 36px; color: #003366; }
 h3 { margin-top: 32px; }
 h4 { margin-top: 24px; }
+h5 { margin-top: 24px; font-weight: 700; }
+h6 { margin-top: 16px; font-size: 12.73px; font-weight: 700; }
 
 a { color: #ff7830; }
 a:hover { color: #ef5b0c; }
+
+.hdh3 h3 { display: none; }
 
 /* =components
  ---------------------------------------- */
