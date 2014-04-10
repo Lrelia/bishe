@@ -138,24 +138,15 @@
       $localLi.first().after('<li class="divider"></li>');
     }
 
-    // Manually add dropdown.
-    // Appears unnecessary as of:
-    //   https://github.com/ryan-roemer/sphinx-bootstrap-theme/pull/90
-    // Remove next time around...
-    // a.dropdown-toggle class needed in globaltoc.html
-    //$('.dropdown-toggle').dropdown();
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
 
     // Patch tables.
     patchTables();
 
     // Add Note, Warning styles. (BS v2,3 compatible).
-    $('.admonition').addClass('alert alert-info')
-      .filter('.warning, .caution')
-        .removeClass('alert-info')
-        .addClass('alert-warning').end()
-      .filter('.error, .danger')
-        .removeClass('alert-info')
-        .addClass('alert-danger alert-error').end();
+    $('div.note').addClass('alert alert-info');
+    $('div.warning').addClass('alert alert-danger alert-error');
 
     // Inline code styles to Bootstrap style.
     $('tt.docutils.literal').not(".xref").each(function (i, e) {
@@ -170,4 +161,4 @@
     var $srcLink = $(".nav #sourcelink");
     $srcLink.parent().html($srcLink.html());
   });
-}(window.$jqTheme || window.jQuery));
+}($jqTheme || window.jQuery));

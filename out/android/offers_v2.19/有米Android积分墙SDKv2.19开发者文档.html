@@ -9,8 +9,8 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/youmi.css" type="text/css" />
     
@@ -27,9 +27,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Youmi Android SDK Document 4.08 文档" href="index.html" />
 <meta charset='utf-8'>
@@ -62,14 +62,11 @@
             
             
               <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="index.html">Site <b class="caret"></b></a>
+  <a href="index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"></ul>
+    ></ul>
 </li>
               
             
@@ -216,7 +213,7 @@
 <h4>2.2 扣除积分<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
 <p>调用以下接口，扣除用户积分账户余额:</p>
 <div class="highlight-python"><div class="highlight"><pre>int amount=100;//示例扣除100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
 </pre></div>
 </div>
 <p>注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。</p>
@@ -225,7 +222,7 @@ bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(thi
 <h4>2.3 增加积分<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
 <p>调用以下接口，往用户积分账户余额增加积分:</p>
 <div class="highlight-python"><div class="highlight"><pre>int amount=100;//示例增加100积分。
-bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
 </pre></div>
 </div>
 <p>注意，该接口直接返回增加积分结果，成功返回true，否则返回false。</p>
