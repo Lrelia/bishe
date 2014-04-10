@@ -92,7 +92,7 @@
 调用以下接口，扣除用户积分账户余额: ::
     
 	int amount=100;//示例扣除100积分。
-	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+	boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
 	
 注意，该接口直接返回扣除积分结果，成功扣除返回true，否则返回false。
 
@@ -103,7 +103,7 @@
 调用以下接口，往用户积分账户余额增加积分: ::
 
 	int amount=100;//示例增加100积分。
-	bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+	boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
 	
 注意，该接口直接返回增加积分结果，成功返回true，否则返回false。
 

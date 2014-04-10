@@ -465,7 +465,7 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 .. code-block:: java
 
     int amount = 100; // 示例扣除100积分。
-    bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
 
 .. tip::
 
@@ -480,7 +480,7 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 .. code-block:: java
 
     int amount = 100; // 示例增加100积分。
-    bool isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
 
 .. tip::
 
