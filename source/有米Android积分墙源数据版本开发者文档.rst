@@ -568,7 +568,7 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
 8.2 签到功能
 ~~~~~~~~~~~~
 
-签到功能提供对 <已完成> 状态的广告进行签到，以提高广告的效果，下面展示简单用法：
+签到功能提供对 <已完成> 状态的广告进行签到，以提高广告的效果，开发者可以通过自己的服务器来做签到，sdk中也集成了签到功能的简单使用，用法如下：
 
 首先通过调用下面方法获取签到列表，``请注意在非 UI 线程中调用本方法``。
 
@@ -584,7 +584,7 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
         }
     }).start();
 
-然后通过调用下面方法可以为签到列表上的广告进行签到：
+然后通过调用下面方法之一，可以为签到列表上的广告进行签到，``下面三个方法可在任意线程中使用`` ：
 
 .. code-block:: java
 
@@ -593,6 +593,49 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
 
     // 2、通过传入 Ym_Class_AppDetailObject 对象进行签到
     Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(Ym_Class_AppDetailObject appDetailObject);
+	
+    // 3、通过传入 广告ID 进行签到 （适用于开发者通过自己的服务器进行进行签到）
+    Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_sendSignInActionType(int adId);
+	
+如果你需要监听签到是否已经成功，可以在上面方法中，再传入一个参数，该参数的类型为Ym_Class_SignInInterface，通过这个接口可以监听签到的情况。
+
+*示例* ：
+
+.. code-block:: java
+
+	// 对任务进行签到，appDetailObject为广告的详细信息对象
+	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_sendSignInActionType(appDetailObject, new Ym_Class_SignInInterface() {
+				
+		/**
+		 * 签到成功时会回调这个接口，本回调接口执行在UI线程中
+		 */
+		@Override
+		public void ym_method_signInSuccess(Context context) {
+			// TODO Auto-generated method stub
+			Toast.makeText(context, "签到成功", Toast.LENGTH_SHORT).show();
+		}
+		
+		/**
+		 * 签到失败时会回调这个接口，本回调接口执行在UI线程中
+		 * @param adId 广告ID
+		 * @param errorCode 错误代码
+		 */
+		@Override
+		public void ym_method_signInFailed(Context context, int adId, int errorCode) {
+			// TODO Auto-generated method stub
+			Toast.makeText(context, String.format("广告id = %d, 签到失败,错误代码：%d", adId, errorCode), Toast.LENGTH_LONG).show();
+			
+		}
+	});
+	
+关于签到的错误代码描述如下：
+
+.. code-block:: xml
+
+	100：获取签到返回数据失败 
+	101：广告任务还没有完成，不能签到
+	102：签到请求参数缺失，请确定已经进行过广告列表的请求以获取广告请求参数
+	103：没有查询到指定广告ID的相关广告记录
 
 
 九、积分墙高级功能（可选）

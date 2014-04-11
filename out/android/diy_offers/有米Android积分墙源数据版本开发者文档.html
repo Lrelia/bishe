@@ -629,7 +629,7 @@
 </div>
 <div class="section" id="id26">
 <h3>8.2 签到功能<a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h3>
-<p>签到功能提供对 &lt;已完成&gt; 状态的广告进行签到，以提高广告的效果，下面展示简单用法：</p>
+<p>签到功能提供对 &lt;已完成&gt; 状态的广告进行签到，以提高广告的效果，开发者可以通过自己的服务器来做签到，sdk中也集成了签到功能的简单使用，用法如下：</p>
 <p>首先通过调用下面方法获取签到列表，<tt class="docutils literal"><span class="pre">请注意在非</span> <span class="pre">UI</span> <span class="pre">线程中调用本方法</span></tt>。</p>
 <p><em>示例</em> ：</p>
 <div class="highlight-java"><div class="highlight"><pre><span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
@@ -641,12 +641,50 @@
 <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
 </pre></div>
 </div>
-<p>然后通过调用下面方法可以为签到列表上的广告进行签到：</p>
+<p>然后通过调用下面方法之一，可以为签到列表上的广告进行签到，<tt class="docutils literal"><span class="pre">下面三个方法可在任意线程中使用</span></tt> ：</p>
 <div class="highlight-java"><div class="highlight"><pre><span class="c1">// 1、通过传入 Ym_Class_AppSummaryObject 对象进行签到</span>
 <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">);</span>
 
 <span class="c1">// 2、通过传入 Ym_Class_AppDetailObject 对象进行签到</span>
 <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">Ym_Class_AppDetailObject</span> <span class="n">appDetailObject</span><span class="o">);</span>
+
+<span class="c1">// 3、通过传入 广告ID 进行签到 （适用于开发者通过自己的服务器进行进行签到）</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="kt">int</span> <span class="n">adId</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>如果你需要监听签到是否已经成功，可以在上面方法中，再传入一个参数，该参数的类型为Ym_Class_SignInInterface，通过这个接口可以监听签到的情况。</p>
+<p><em>示例</em> ：</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 对任务进行签到，appDetailObject为广告的详细信息对象</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">appDetailObject</span><span class="o">,</span> <span class="k">new</span> <span class="n">Ym_Class_SignInInterface</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * 签到成功时会回调这个接口，本回调接口执行在UI线程中</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInSuccess</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated method stub</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;签到成功&quot;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * 签到失败时会回调这个接口，本回调接口执行在UI线程中</span>
+<span class="cm">         * @param adId 广告ID</span>
+<span class="cm">         * @param errorCode 错误代码</span>
+<span class="cm">         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInFailed</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">adId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">errorCode</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated method stub</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;广告id = %d, 签到失败,错误代码：%d&quot;</span><span class="o">,</span> <span class="n">adId</span><span class="o">,</span> <span class="n">errorCode</span><span class="o">),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+
+        <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<p>关于签到的错误代码描述如下：</p>
+<div class="highlight-xml"><div class="highlight"><pre>100：获取签到返回数据失败
+101：广告任务还没有完成，不能签到
+102：签到请求参数缺失，请确定已经进行过广告列表的请求以获取广告请求参数
+103：没有查询到指定广告ID的相关广告记录
 </pre></div>
 </div>
 </div>
