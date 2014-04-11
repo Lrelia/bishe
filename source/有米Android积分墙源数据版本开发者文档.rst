@@ -85,8 +85,11 @@ Android 积分墙源数据开发者文档
 
 .. code-block:: java
 
-    net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId", "AppSecret", false);
-    net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch();
+    import net.youmi.android.Ym_Class_AdManager;
+    import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
+    ...
+    Ym_Class_AdManager.getInstance(Context context).init("AppId", "AppSecret", false);
+    Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_onAppLaunch();
 
 .. Attention::
 
@@ -431,6 +434,9 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 
 .. code-block:: java
 
+    import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
+    ...
+	
     // 1、传入 Ym_Class_AppSummaryObject 对象
     Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_openOrDownloadApp(Ym_Class_AppSummaryObject appSummaryObject);
 
@@ -450,7 +456,9 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 
 .. code-block:: java
 
-    int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
+    int myPointBalance = Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
 
 .. tip::
 
@@ -464,8 +472,10 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 
 .. code-block:: java
 
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
     int amount = 100; // 示例扣除100积分。
-    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+    boolean isSuccess = Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
 
 .. tip::
 
@@ -479,8 +489,10 @@ Ym_Class_AppDetailObject 中集成了一条广告的详细信息，通过 Ym_Cla
 
 .. code-block:: java
 
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
     int amount = 100; // 示例增加100积分。
-    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+    boolean isSuccess = Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
 
 .. tip::
 
@@ -562,6 +574,8 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
 
 .. code-block:: java
 
+    import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
+    ...
     Ym_Class_DiyOfferWallManager.getInstance(Context context).ym_method_setRequestCount(int count);
 
 
@@ -576,6 +590,11 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
 
 .. code-block:: java
 
+    import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryDataInterface;
+    import net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList;
+    import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
+    ...
+	
     new Thread(new Runnable() {
         @Override
         public void run() {
@@ -602,6 +621,10 @@ Ym_Class_DiyOfferWallManager 关于下载安装监听器的调用：
 *示例* ：
 
 .. code-block:: java
+
+    import net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager;
+    import net.youmi.android.offers.diyoffer.Ym_Class_SignInInterface;
+    ...
 
 	// 对任务进行签到，appDetailObject为广告的详细信息对象
 	Ym_Class_DiyOfferWallManager.getInstance(this).ym_method_sendSignInActionType(appDetailObject, new Ym_Class_SignInInterface() {

@@ -39,14 +39,18 @@
 
 .. code-block:: java
 
-    net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_registerNotify(notifyObject);
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
+    Ym_Class_PointsManager.getInstance(this).ym_method_registerNotify(notifyObject);
 
 
 3) 在 UI 销毁前调用以下代码释放 Notify 引用，以防止造成内存漏洞：
 
 .. code-block:: java
 
-    net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_unRegisterNotify(notifyObject);
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
+    Ym_Class_PointsManager.getInstance(this).ym_method_unRegisterNotify(notifyObject);
 
 
 二、通过 SDK 获取积分订单
@@ -202,7 +206,9 @@ Ym_Class_EarnPointsOrderInfo
 
 .. code-block:: java
 
-    net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_setCustomUserId("your_userid");
+    import net.youmi.android.offers.Ym_Class_OffersManager;
+    ...
+    Ym_Class_OffersManager.getInstance(context).ym_method_setCustomUserId("your_userid");
 
 | 用户完成了一次积分任务并在有米服务器成功结算后，也可以通过服务器通讯的方式，由有米服务器向您的服务器回调用户完成的订单，
 | 详情请查看 `有米 Android 积分墙积分订单服务器回调协议 <http://wiki.youmi.net/Youmi_android_offers_order_callback_protocol>`_ 。
@@ -221,11 +227,14 @@ Ym_Class_EarnPointsOrderInfo
 
 .. code-block:: java
 
+    import net.youmi.android.offers.Ym_Class_OffersManager;
+    ...	
+
     // 积分墙配置检查（没有使用“通过 SDK 获取积分订单”功能）：
-    bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig();
+    boolean isSuccess = Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig();
 
     // 积分墙配置检查（使用“通过 SDK 获取积分订单”功能）：
-    bool isSuccess = net.youmi.android.offers.Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig(true);
+    boolean isSuccess = Ym_Class_OffersManager.getInstance(context).ym_method_checkOffersAdConfig(true);
 
 .. Attention::
 
@@ -243,7 +252,9 @@ Ym_Class_EarnPointsOrderInfo
 
 .. code-block:: java
 
-    net.youmi.android.Ym_Class_AdManager.getInstance(this).ym_method_setEnableDebugLog(false);
+    import net.youmi.android.Ym_Class_AdManager;
+    ...
+    Ym_Class_AdManager.getInstance(this).ym_method_setEnableDebugLog(false);
 
 .. tip::
 

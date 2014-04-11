@@ -105,8 +105,11 @@
 
 .. code-block:: java
 
-    net.youmi.android.Ym_Class_AdManager.getInstance(Context context).init("AppId", "AppSecret", false);
-    net.youmi.android.offers.Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppLaunch();
+    import net.youmi.android.Ym_Class_AdManager;
+    import net.youmi.android.offers.Ym_Class_OffersManager;
+    ...
+    Ym_Class_AdManager.getInstance(Context context).init("AppId", "AppSecret", false);
+    Ym_Class_OffersManager.getInstance(Context context).ym_method_onAppLaunch();
 
 .. Attention::
 
@@ -125,9 +128,12 @@
 
 .. code-block:: java
 
-    int myPointBalance = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
+    int myPointBalance = Ym_Class_PointsManager.getInstance(this).ym_method_queryPoints();
 
 .. tip::
+
 
     **注意：** 该接口直接返回 int 型的积分余额。
 
@@ -139,8 +145,10 @@
 
 .. code-block:: java
 
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
     int amount = 100; // 示例扣除100积分。
-    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
+    boolean isSuccess = Ym_Class_PointsManager.getInstance(this).ym_method_spendPoints(amount);
 
 .. tip::
 
@@ -154,8 +162,10 @@
 
 .. code-block:: java
 
+    import net.youmi.android.offers.Ym_Class_PointsManager;
+    ...
     int amount = 100; // 示例增加100积分
-    boolean isSuccess = net.youmi.android.offers.Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
+    boolean isSuccess = Ym_Class_PointsManager.getInstance(this).ym_method_awardPoints(amount);
 
 .. tip::
 
@@ -169,7 +179,9 @@
 
 .. code-block:: java
 
-    net.youmi.android.offers.Ym_Class_OffersManager.getInstance(this).ym_method_showOffersWall();
+    import net.youmi.android.offers.Ym_Class_OffersManager;
+    ...
+    Ym_Class_OffersManager.getInstance(this).ym_method_showOffersWall();
 
 
 4、展示悬浮半屏积分墙
@@ -179,7 +191,9 @@
 
 .. code-block:: java
 
-    net.youmi.android.offers.OffersManager.getInstance(this).ym_method_showOffersWallDialog(this);
+    import net.youmi.android.offers.Ym_Class_OffersManager.
+    ...
+    Ym_Class_OffersManager.getInstance(this).ym_method_showOffersWallDialog(this);
 
 
 三、积分墙高级功能（可选）

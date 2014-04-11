@@ -208,8 +208,11 @@
 <h2>二、初始化及相关工作（重要）<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <hr class="docutils" />
 <p>请务必在应用第一个 Activity（启动的第一个类）的 onCreate 中调用以下代码：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">Ym_Class_AdManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">init</span><span class="o">(</span><span class="s">&quot;AppId&quot;</span><span class="o">,</span> <span class="s">&quot;AppSecret&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-<span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">diyoffer</span><span class="o">.</span><span class="na">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_onAppLaunch</span><span class="o">();</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.Ym_Class_AdManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_AdManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">init</span><span class="o">(</span><span class="s">&quot;AppId&quot;</span><span class="o">,</span> <span class="s">&quot;AppSecret&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_onAppLaunch</span><span class="o">();</span>
 </pre></div>
 </div>
 <div class="admonition attention">
@@ -516,7 +519,10 @@
 <p class="first admonition-title">警告</p>
 <p class="last"><strong>注意：</strong> 打开广告务必调用本方法，否则可能无法获取积分和结算</p>
 </div>
-<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 1、传入 Ym_Class_AppSummaryObject 对象</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
+
+<span class="c1">// 1、传入 Ym_Class_AppSummaryObject 对象</span>
 <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_openOrDownloadApp</span><span class="o">(</span><span class="n">Ym_Class_AppSummaryObject</span> <span class="n">appSummaryObject</span><span class="o">);</span>
 
 <span class="c1">// 2、传入 Ym_Class_AppDetailObject 对象</span>
@@ -530,7 +536,9 @@
 <div class="section" id="id20">
 <h3>6.1 查询积分余额<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
 <p>调用以下接口，查询用户的积分账户余额：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">myPointBalance</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_queryPoints</span><span class="o">();</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_PointsManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="kt">int</span> <span class="n">myPointBalance</span> <span class="o">=</span> <span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_queryPoints</span><span class="o">();</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -541,8 +549,10 @@
 <div class="section" id="id21">
 <h3>6.2 扣除积分<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h3>
 <p>调用以下接口，扣除用户积分账户余额：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例扣除100积分。</span>
-<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_spendPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_PointsManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例扣除100积分。</span>
+<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_spendPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -553,8 +563,10 @@
 <div class="section" id="id22">
 <h3>6.3 增加积分<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
 <p>调用以下接口，往用户积分账户余额增加积分：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例增加100积分。</span>
-<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_awardPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_PointsManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// 示例增加100积分。</span>
+<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_awardPoints</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -623,7 +635,9 @@
 <div class="section" id="id25">
 <h3>8.1 设置请求广告的数量<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
 <p>通过调用下面方法即可设置请求广告列表的长度，如果需要使用本方法，请在调用获取广告列表的方法之前调用本方法</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_setRequestCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">).</span><span class="na">ym_method_setRequestCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">);</span>
 </pre></div>
 </div>
 </div>
@@ -632,7 +646,12 @@
 <p>签到功能提供对 &lt;已完成&gt; 状态的广告进行签到，以提高广告的效果，开发者可以通过自己的服务器来做签到，sdk中也集成了签到功能的简单使用，用法如下：</p>
 <p>首先通过调用下面方法获取签到列表，<tt class="docutils literal"><span class="pre">请注意在非</span> <span class="pre">UI</span> <span class="pre">线程中调用本方法</span></tt>。</p>
 <p><em>示例</em> ：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryDataInterface</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_AppSummaryObjectList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="o">...</span>
+
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// TODO Auto-generated method stub</span>
@@ -654,30 +673,34 @@
 </div>
 <p>如果你需要监听签到是否已经成功，可以在上面方法中，再传入一个参数，该参数的类型为Ym_Class_SignInInterface，通过这个接口可以监听签到的情况。</p>
 <p><em>示例</em> ：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 对任务进行签到，appDetailObject为广告的详细信息对象</span>
-<span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">appDetailObject</span><span class="o">,</span> <span class="k">new</span> <span class="n">Ym_Class_SignInInterface</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_DiyOfferWallManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.youmi.android.offers.diyoffer.Ym_Class_SignInInterface</span><span class="o">;</span>
+<span class="o">...</span>
 
-        <span class="cm">/**</span>
-<span class="cm">         * 签到成功时会回调这个接口，本回调接口执行在UI线程中</span>
-<span class="cm">         */</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInSuccess</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// TODO Auto-generated method stub</span>
-                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;签到成功&quot;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
-        <span class="o">}</span>
+    <span class="c1">// 对任务进行签到，appDetailObject为广告的详细信息对象</span>
+    <span class="n">Ym_Class_DiyOfferWallManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_sendSignInActionType</span><span class="o">(</span><span class="n">appDetailObject</span><span class="o">,</span> <span class="k">new</span> <span class="n">Ym_Class_SignInInterface</span><span class="o">()</span> <span class="o">{</span>
 
-        <span class="cm">/**</span>
-<span class="cm">         * 签到失败时会回调这个接口，本回调接口执行在UI线程中</span>
-<span class="cm">         * @param adId 广告ID</span>
-<span class="cm">         * @param errorCode 错误代码</span>
-<span class="cm">         */</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInFailed</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">adId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">errorCode</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// TODO Auto-generated method stub</span>
-                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;广告id = %d, 签到失败,错误代码：%d&quot;</span><span class="o">,</span> <span class="n">adId</span><span class="o">,</span> <span class="n">errorCode</span><span class="o">),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+            <span class="cm">/**</span>
+<span class="cm">             * 签到成功时会回调这个接口，本回调接口执行在UI线程中</span>
+<span class="cm">             */</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInSuccess</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated method stub</span>
+                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;签到成功&quot;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+            <span class="o">}</span>
 
-        <span class="o">}</span>
-<span class="o">});</span>
+            <span class="cm">/**</span>
+<span class="cm">             * 签到失败时会回调这个接口，本回调接口执行在UI线程中</span>
+<span class="cm">             * @param adId 广告ID</span>
+<span class="cm">             * @param errorCode 错误代码</span>
+<span class="cm">             */</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ym_method_signInFailed</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">adId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">errorCode</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated method stub</span>
+                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;广告id = %d, 签到失败,错误代码：%d&quot;</span><span class="o">,</span> <span class="n">adId</span><span class="o">,</span> <span class="n">errorCode</span><span class="o">),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+
+            <span class="o">}</span>
+    <span class="o">});</span>
 </pre></div>
 </div>
 <p>关于签到的错误代码描述如下：</p>

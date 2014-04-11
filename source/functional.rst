@@ -228,5 +228,7 @@ SDK 实用工具
 
 .. code-block:: java
 
+    import net.youmi.android.Ym_Class_AdManager;
+    ...
     // 开启用户数据统计服务,默认不开启，传入 false 值也不开启，只有传入 true 才会调用
     Ym_Class_AdManager.getInstance(Context context).ym_method_setUserDataCollect(true);

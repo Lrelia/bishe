@@ -144,13 +144,17 @@
 <ol class="arabic simple" start="2">
 <li>在 UI 初始化后调用：</li>
 </ol>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_registerNotify</span><span class="o">(</span><span class="n">notifyObject</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_PointsManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_registerNotify</span><span class="o">(</span><span class="n">notifyObject</span><span class="o">);</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li>在 UI 销毁前调用以下代码释放 Notify 引用，以防止造成内存漏洞：</li>
 </ol>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_unRegisterNotify</span><span class="o">(</span><span class="n">notifyObject</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_PointsManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_PointsManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_unRegisterNotify</span><span class="o">(</span><span class="n">notifyObject</span><span class="o">);</span>
 </pre></div>
 </div>
 </div>
@@ -293,7 +297,9 @@
 <p class="last"><strong>注意：</strong> 如果您使用服务器回调，请登录有米后台，进入到 <a class="reference external" href="https://www.youmi.net/apps/setting">广告设置</a> - 积分广告基本设置 - 余额显示设置，关闭该功能！</p>
 </div>
 <p>务必在调用积分墙的任意接口之前调用以下接口设置用户的标识，该标识最终通过订单回调到您的服务器：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_setCustomUserId</span><span class="o">(</span><span class="s">&quot;your_userid&quot;</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_OffersManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_setCustomUserId</span><span class="o">(</span><span class="s">&quot;your_userid&quot;</span><span class="o">);</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -309,11 +315,14 @@
 <h2>四、验证积分墙配置是否正确<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <hr class="docutils" />
 <p>嵌入 SDK 时如果配置有误有可能会导致没有收入或者获取不到积分，在完成文档中的配置之后可以通过调用以下接口查看配置是否正确：</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 积分墙配置检查（没有使用“通过 SDK 获取积分订单”功能）：</span>
-<span class="n">bool</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_checkOffersAdConfig</span><span class="o">();</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.offers.Ym_Class_OffersManager</span><span class="o">;</span>
+<span class="o">...</span>
+
+<span class="c1">// 积分墙配置检查（没有使用“通过 SDK 获取积分订单”功能）：</span>
+<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_checkOffersAdConfig</span><span class="o">();</span>
 
 <span class="c1">// 积分墙配置检查（使用“通过 SDK 获取积分订单”功能）：</span>
-<span class="n">bool</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">offers</span><span class="o">.</span><span class="na">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_checkOffersAdConfig</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">Ym_Class_OffersManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">ym_method_checkOffersAdConfig</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </pre></div>
 </div>
 <div class="admonition attention">
@@ -326,7 +335,9 @@
 <hr class="docutils" />
 <p>如果需要关闭有米广告 SDK 的 debug log，请调用以下代码来关闭 SDK 的 log 输出。</p>
 <p><em>代码示例：</em></p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="na">youmi</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">Ym_Class_AdManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_setEnableDebugLog</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">net.youmi.android.Ym_Class_AdManager</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="n">Ym_Class_AdManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">ym_method_setEnableDebugLog</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
 </pre></div>
 </div>
 <div class="admonition tip">
