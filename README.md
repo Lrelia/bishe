@@ -97,7 +97,7 @@ rst 教程详见: https://github.com/buke/openerp-doc/wiki/reStructuredText%E7%A
 linux :
 
 ```
-    sh html.sh
+    bash html.sh
 ```
 
 windows:
