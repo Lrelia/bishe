@@ -1,6 +1,9 @@
 # -*- coding:utf-8 -*- 
 import os,sys,json,shutil,re
 
+d=os.path.dirname(os.path.realpath(__file__))
+ymdoc=os.path.join(d,"ymdoc.py")
+
 def isNumber(str):
     pattern=re.compile(r'[0-9]+')
     match=pattern.match(str)
@@ -21,7 +24,7 @@ file_list=os.listdir(config_dir)
 
 for item in file_list:
     filePath=os.path.join(config_dir,item)
-    os.system("python  tools/ymdoc.py %s"%filePath)
+    os.system("python %s %s"%(ymdoc,filePath))
 print ""
 print "已经编译完成!"
 print ""

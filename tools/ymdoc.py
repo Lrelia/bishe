@@ -1,6 +1,9 @@
 # -*- coding:utf-8 -*- 
 import os,sys,json,shutil
 
+d=os.path.dirname(os.path.realpath(__file__))
+html_make=os.path.join(d,"..")
+os.chdir(html_make)
 
 def copyIntoDir(srcPath,destDirPath):
     if not os.path.exists(destDirPath):
@@ -27,7 +30,8 @@ os.environ["ympk_release"]=config["ver"]
 os.system("make html")
 
 #copy htmls
-into=config["into"]
+t=config["into"]
+into=os.path.join(html_make,t)
 if os.path.exists(into):
     shutil.rmtree(into)
 print into
@@ -36,5 +40,6 @@ src=config["from"]
 for item in src:
     #print "copy "+item+" 到 "+into
     #print item
-    copyIntoDir(item,into)
+    f=os.path.join(html_make,item)
+    copyIntoDir(f,t)
 
