@@ -66,7 +66,6 @@
 
 .. code-block:: java
 
-    package com.test;
     import android.content.Context;
     import net.youmi.android.offers.Ym_Class_EarnPointsOrderList;
     import net.youmi.android.offers.Ym_Class_PointsReceiver;
