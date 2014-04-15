@@ -132,7 +132,6 @@
 
 .. code-block:: java
 
-    package com.test
     import android.app.Activity
     import net.youmi.android.AdManager;
 
