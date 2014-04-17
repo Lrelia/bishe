@@ -1,7 +1,8 @@
 {
-    "title": "YoumiSDK开发者文档",
+    "title": "YouMiSDK开发者文档",
     "ver": "v4.08",
     "from": [
+        "build/html/index.html",
         "build/html/有米Android积分墙开发者文档.html",
         "build/html/有米Android无积分广告开发者文档.html",
         "build/html/functional.html",
